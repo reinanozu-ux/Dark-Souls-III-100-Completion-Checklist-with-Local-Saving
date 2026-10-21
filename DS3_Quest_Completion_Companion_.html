@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='black'/><text x='50' y='72' font-size='70' text-anchor='middle' fill='%23ff4d6d'>れ</text></svg>">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DS3 Q&CC · Base</title>
+<style>
+:root{color-scheme:dark;--bg:#101114;--panel:#191b20;--panel2:#20232a;--line:#363a43;--text:#eeeae2;--muted:#a8a7a2;--gold:#c9a765;--gold2:#e0c98d;--green:#779b76;--red:#c56c62;--blue:#8298b3}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#27231b 0,transparent 35%),var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input,select,textarea{font:inherit;color:inherit;background:#111318;border:1px solid #464952;border-radius:7px;padding:10px;min-width:0}button{cursor:pointer;transition:.15s}button:hover{border-color:var(--gold);color:var(--gold2)}button.primary{background:#443922;border-color:#9d804b}button.danger:hover{border-color:var(--red);color:#f0a39a}
+a{color:var(--gold2)}header{border-bottom:1px solid var(--line);padding:26px 22px 20px;background:linear-gradient(110deg,rgba(60,47,27,.8),rgba(17,18,22,.85) 65%)}.wrap{max-width:1300px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:var(--gold2);font-weight:750}.hero{display:flex;justify-content:space-between;gap:20px;align-items:end}.hero h1{font-family:Georgia,serif;font-weight:500;font-size:clamp(28px,4vw,44px);line-height:1.08;margin:8px 0}.hero p{color:var(--muted);max-width:760px;margin:8px 0 0}.version{border:1px solid #6b5836;border-radius:8px;padding:8px 12px;color:var(--gold2);white-space:nowrap;font-size:12px}
+main{max-width:1300px;margin:auto;padding:20px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}.stat,.panel,.task,.area-card{background:var(--panel);border:1px solid var(--line);border-radius:10px}.stat{padding:13px 15px}.stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}.stat strong{display:block;font-size:24px;margin-top:2px}.progress{height:7px;background:#34363d;border-radius:20px;overflow:hidden;margin-top:8px}.bar{height:100%;width:0;background:linear-gradient(90deg,#7b986f,#c8b16f);transition:width .2s}.layout{display:grid;grid-template-columns:255px minmax(0,1fr);gap:16px;align-items:start}.side{position:sticky;top:12px}.panel{padding:14px;margin-bottom:12px}.panel h2,.panel h3{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold2);margin:0 0 10px}.area-list{display:grid;gap:5px}.area-btn{display:flex;justify-content:space-between;gap:8px;text-align:left;background:transparent;border-color:transparent;padding:9px 10px}.area-btn.active{background:#3b3224;border-color:#695637;color:#f0d9a1}.count{font-size:11px;color:var(--muted);white-space:nowrap}.content-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}.content-head h2{font:500 25px Georgia,serif;margin:0}.small{font-size:12px;color:var(--muted)}.controls{display:grid;grid-template-columns:minmax(150px,2fr) repeat(2,minmax(130px,1fr));gap:8px;margin-bottom:10px}.actions{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 14px}.notice{border-left:3px solid var(--gold);background:#29251e;padding:11px 13px;border-radius:0 8px 8px 0;color:#ddd2b8;font-size:13px;margin-bottom:14px}.notice strong{color:var(--gold2)}.task-list{display:grid;gap:8px}.task{display:flex;gap:11px;align-items:flex-start;padding:13px;border-left:3px solid #4b5059}.task.done{border-left-color:var(--green);background:#19221c}.task.missable{border-left-color:var(--red)}.task input[type=checkbox]{accent-color:var(--green);width:18px;height:18px;margin:3px 0 0;flex-shrink:0}.task-body{flex:1;min-width:0}.task-title{font-weight:680}.task.done .task-title{color:#a9c5a6}.task-desc{color:#c1c0bb;font-size:13px;margin-top:3px}.meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}.tag{font-size:10px;text-transform:uppercase;letter-spacing:.06em;padding:3px 6px;border:1px solid #484b53;border-radius:4px;color:#c8c7c0}.tag.red{border-color:#81504c;color:#efaaa1}.tag.gold{border-color:#78633e;color:#e4ca8d}.empty{text-align:center;padding:35px;color:var(--muted);border:1px dashed var(--line);border-radius:10px}.section-title{font:500 21px Georgia,serif;margin:24px 0 9px}.two-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.route{padding:13px;background:var(--panel);border:1px solid var(--line);border-radius:9px}.route h3{margin:0 0 6px;font-size:14px;color:var(--gold2)}.route p{margin:0;color:#c2c0ba;font-size:13px}.footer{margin-top:25px;border-top:1px solid var(--line);padding:18px 0;color:var(--muted);font-size:12px}.mobile-select{display:none;width:100%;margin-bottom:10px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.side{position:static}.side .panel:first-child{display:none}.mobile-select{display:block}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{align-items:start;flex-direction:column}.version{white-space:normal}.controls{grid-template-columns:1fr 1fr}.controls input{grid-column:1/-1}}
+@media(max-width:520px){main{padding:12px}.stats{gap:7px}.stat{padding:10px}.stat strong{font-size:21px}.controls{grid-template-columns:1fr}.controls input{grid-column:auto}.two-col{grid-template-columns:1fr}.task{padding:11px}.content-head{align-items:start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="eyebrow">Ashen One's field notes</div>
+  <div class="hero"><div><h1>Dark Souls III<br>Quest & Completion Companion</h1><p>A chronological, saveable field companion for NPC questlines, gestures, key collectibles, and ending requirements. Search the whole run, track missables, and keep your progress backed up.</p></div><div class="version">BASE GAME · WORKING EDITION</div></div>
+  <div class="stats">
+    <div class="stat"><span>Tasks completed</span><strong id="doneCount">0 / 0</strong><div class="progress"><div class="bar" id="overallBar"></div></div></div>
+    <div class="stat"><span>Overall completion</span><strong id="percent">0%</strong><div class="small">Saved in this browser</div></div>
+    <div class="stat"><span>Missable tasks left</span><strong id="missableLeft">0</strong><div class="small">Prioritize these</div></div>
+    <div class="stat"><span>Current area</span><strong id="areaProgress">0 / 0</strong><div class="small" id="areaLabel">Firelink Shrine</div></div>
+  </div>
+</div></header>
+<main>
+  <div class="notice"><strong>Working edition:</strong> this checklist is adapted from the supplied NPC Side Quest Guide V2 and our planning notes. It is not yet a verified 100% route. Confirm route-specific requirements before irreversible choices. DLC is reserved for a later update.</div>
+  <div class="layout">
+    <aside class="side">
+      <div class="panel"><h2>Progress by area</h2><div class="area-list" id="areaList"></div></div>
+      <div class="panel"><h2>Tools</h2><div class="actions" style="display:grid;grid-template-columns:1fr 1fr;margin:0"><button id="exportBtn">Export backup</button><button id="importBtn">Import backup</button><button id="resetAreaBtn" class="danger">Reset area</button><button id="resetAllBtn" class="danger">Reset all</button><input id="fileInput" type="file" accept=".json,application/json" hidden></div><p class="small">Export a backup before clearing browser data or switching devices.</p></div>
+      <div class="panel"><h2>Route notes</h2><p class="small">Some quests conflict. Use the route reference below before committing to Rosaria, Irina's dark miracles, or Anri's alternate ending path.</p><button id="showRoutes" style="width:100%">Open route reference</button></div>
+    </aside>
+    <section>
+      <select class="mobile-select" id="areaMobile" aria-label="Choose area"></select>
+      <label class="small" style="display:flex;align-items:center;gap:8px;margin:0 0 10px"><input id="globalSearch" type="checkbox" style="min-width:auto"> Search/filter across every area</label>
+      <div class="content-head"><div><div class="eyebrow" id="areaEyebrow">Chronological checklist</div><h2 id="areaTitle">Firelink Shrine</h2></div><div class="small" id="resultCount">Showing all tasks</div></div>
+      <div class="controls">
+        <input id="search" type="search" placeholder="Search every area: NPC, item, gesture, instruction…">
+        <select id="status"><option value="all">All tasks</option><option value="open">Not completed</option><option value="done">Completed</option><option value="missable">Missable only</option><option value="collectible">Collectibles</option><option value="gesture">Gestures</option><option value="ending">Ending tasks</option></select>
+        <select id="sort"><option value="order">Chronological order</option><option value="az">Task A–Z</option><option value="missable">Missable first</option></select>
+      </div>
+      <div class="actions"><button id="showAll">Show all tasks</button><button id="showOpen">Show remaining</button><button id="checkArea">Mark area complete</button><button id="jumpNext">Next unfinished area</button></div>
+      <div class="task-list" id="tasks"></div>
+    </section>
+  </div>
+  <section id="routeSection" style="display:none">
+    <h2 class="section-title">Route conflicts & important decisions</h2>
+    <div class="two-col">
+      <div class="route"><h3>Sirris vs. Rosaria</h3><p>Joining Rosaria's Fingers or offering a Pale Tongue for appearance/stat changes can antagonize Sirris. Finish Sirris's questline and collect her rewards before committing to Rosaria's progression.</p></div>
+      <div class="route"><h3>Yoel, Yuria & Usurpation of Fire</h3><p>For this ending, obtain all five Dark Sigils from Yoel before entering the Catacombs of Carthus. Do not heal the Dark Sigils before the ending sequence.</p></div>
+      <div class="route"><h3>Anri's routes</h3><p>Anri's quest has alternate outcomes. Decide whether you want the Usurpation route or the standard quest outcome before following the Church of Yorshka and pilgrim-related steps.</p></div>
+      <div class="route"><h3>Irina's miracles</h3><p>Giving Irina dark tomes and purchasing dark miracles changes her quest outcome. For the safer good route, give her the non-dark tomes and have dark tomes handled by Karla.</p></div>
+      <div class="route"><h3>Greirat's pillaging</h3><p>Greirat's later expeditions depend on quest progression and protection. Check Siegward/Patches conditions before advancing the Irithyll and Lothric Castle stages.</p></div>
+      <div class="route"><h3>Orbeck</h3><p>Recruit Orbeck with sufficient Intelligence, give him scrolls as you find them, and purchase spells before progressing too far. His quest can affect rewards and summon availability.</p></div>
+      <div class="route"><h3>Mound-Makers</h3><p>Try to obtain the covenant through the cage-bearer before defeating the Curse-rotted Greatwood. If missed, the alternate Sirris route may still be available.</p></div>
+      <div class="route"><h3>Ending choice</h3><p>Keep separate saves or make a deliberate choice before the final sequence if you want multiple endings. The checklist records requirements, but does not replace a route-specific walkthrough.</p></div>
+    </div>
+  </section>
+  <footer class="footer">Progress saves automatically in this browser using local storage. Use <strong>Export backup</strong> before clearing browser data or changing devices. Importing a backup replaces the current checklist progress.<br><br>Quest instructions are adapted from the user-provided “NPC Side Quest Guide V2” by AlexSobecki, with the structure reorganized into a chronological checklist. This is an independent fan-made companion and is not affiliated with FromSoftware. Content verification and the DLC section are planned for a later revision. Website assembled by れいな with AI assistance. The checklist is a work in progress; check irreversible quest decisions against a verified walkthrough.</footer>
+</main>
+<script>
+const areas = [
+{name:"Firelink Shrine",tasks:[
+["Talk to the Fire Keeper","Speak with the Fire Keeper at the central bonfire.","Fire Keeper"],
+["Talk to the Shrine Handmaid","Check the Handmaid's shop and dialogue.","Shrine Handmaid"],
+["Speak to Hawkwood","Talk until he has no new dialogue; receive the Collapse gesture.","Hawkwood","gesture"],
+["Speak to Blacksmith Andre","Talk to Andre; receive the Hurrah! gesture.","Andre","gesture"]]},
+{name:"High Wall of Lothric",tasks:[
+["Free Greirat","Find the Cell Key in the lower part of the building near Tower on the Wall, unlock Greirat's cell, and agree to his request.","Greirat"],
+["Give Loretta's Blue Tearstone Ring","Agree to deliver the ring for Greirat; he returns to Firelink Shrine.","Greirat"],
+["Collect the High Wall Estus Shard","Find the shard on an altar in the room where the Cell Key is found.","Andre","collectible"],
+["Speak to Leonhard","After lighting Tower on the Wall, return to Firelink and speak with Leonhard for Cracked Red-Eye Orbs.","Leonhard"],
+["Speak to Emma","Find Emma near the route toward Vordt. Receive the Way of Blue covenant and Small Lothric Banner.","Emma","missable"],
+["Check the Firelink Shrine merchants","Speak to Greirat and other NPCs after their first relocation.","Firelink"]]},
+{name:"Undead Settlement",tasks:[
+["Find Yoel below the High Wall","Speak to the pilgrim near the Foot of the High Wall area and accept his offer to travel to Firelink.","Yoel"],
+["Receive Beckon from Yoel","Speak to Yoel at Firelink Shrine.","Yoel","gesture"],
+["Draw Out True Strength five times","For Usurpation of Fire, obtain all five Dark Sigils by using Yoel's free levels and reaching the required Hollowing thresholds.","Yoel","missable"],
+["Meet Yuria","After all five Dark Sigils and a reload, find Yuria where Yoel stood and speak to her.","Yuria","missable"],
+["Collect the Londor Braille Divine Tome","Purchase it from Yuria; avoid giving it to Irina if pursuing her good route.","Yuria","missable"],
+["Find Loretta's Bone","Cut down the hanging body on the balcony in the first house from the Undead Settlement bonfire.","Greirat"],
+["Give Loretta's Bone to Greirat","Return to Firelink and give him the bone; speak to him again for the Curl Up gesture.","Greirat","gesture"],
+["Collect the Undead Settlement Estus Shard","Find it by the burning tree surrounded by worshipping undead, left of the main bonfire route.","Andre","collectible"],
+["Find the Warriors of Sunlight covenant","Drop through the hole in the floor in the building beyond the congregation near the burning tree.","Covenant"],
+["Obtain Mound-Makers covenant early","Use the cage-bearing enemy route before defeating the Curse-rotted Greatwood.","Hodrick","missable"],
+["Rescue Cornyx","Find him in a cage above Cliff Underside and agree to send him to Firelink.","Cornyx"],
+["Receive Welcome gesture and Pyromancy Flame","Talk to Cornyx at Firelink after rescuing him.","Cornyx","gesture"],
+["Find Irina and Eygon","Locate them near the tower beyond Cliff Underside; access to Irina requires the Mortician's Ashes.","Irina"],
+["Collect Mortician's Ashes","Find them in the graveyard near Dilapidated Bridge, among the falling spears.","Handmaid","collectible"],
+["Unlock the grave key route","Give Mortician's Ashes to the Handmaid and buy the Grave Key; use it to reach Irina.","Irina"],
+["Rescue Irina","Free her from the cell and decide whether to follow the good or dark miracle route.","Irina","missable"],
+["Meet Siegward and defeat the Fire Demon","Follow Siegward's encounter in the settlement and exhaust his dialogue after the fight.","Siegward"],
+["Find the Great Swamp Pyromancy Tome","Locate the tome in the settlement area and give it to Cornyx.","Cornyx","collectible"],
+["Defeat Curse-rotted Greatwood","Before fighting, make sure you've completed any settlement tasks that depend on its survival.","Boss progression","missable"]]},
+{name:"Road of Sacrifices & Crucifixion Woods",tasks:[
+["Trigger Greirat's first pillage return","After the Greatwood progression, return to Firelink and check Greirat's dialogue and inventory.","Greirat"],
+["Give Irina the Braille Divine Tome of Carim","For the good route, give Irina the Carim tome and purchase only non-dark miracles.","Irina"],
+["Meet Anri and Horace","Speak to both at the Halfway Fortress bonfire and exhaust dialogue.","Anri / Horace"],
+["Find the Sage's Scroll","Collect the scroll in Farron Keep and deliver it to Orbeck.","Orbeck","collectible"],
+["Find the Golden Scroll","Collect it in Farron Keep and deliver it to Orbeck.","Orbeck","collectible"],
+["Recruit Orbeck","Speak to Orbeck in Crucifixion Woods with at least 10 Intelligence and agree to his request.","Orbeck","missable"],
+["Give Orbeck scrolls promptly","Give him any scrolls you have found before advancing too far; purchase spells to keep his quest moving.","Orbeck","missable"],
+["Find Farron Coal","Collect the coal in the Road of Sacrifices/Farron region and give it to Andre.","Andre","collectible"],
+["Collect the Crucifixion Woods Estus Shard","Find the shard in the area near the large burning tree/crabs.","Andre","collectible"],
+["Meet Sirris at Firelink","Speak to Sirris after reaching the area and check for her gesture/reward dialogue.","Sirris"],
+["Find Paladin's Ashes","Collect the ashes in Cathedral of the Deep approach and give them to the Handmaid.","Handmaid","collectible"],
+["Find the Deep Braille Divine Tome","Collect the tome in Cathedral of the Deep and decide whether it belongs with Irina or Karla.","Collectible"]]},
+{name:"Cathedral of the Deep",tasks:[
+["Open the Cathedral shortcuts","Unlock the main doors and lifts so the area is easier to navigate.","Progression"],
+["Meet Unbreakable Patches","Trigger Patches' Cathedral encounter and resolve the bridge/tower sequence.","Patches"],
+["Buy Siegward's armor from Patches","If Siegward is trapped in the well, purchase the armor from Patches and return it to Siegward.","Siegward","missable"],
+["Return Siegward's armor","Speak to Siegward in the well and give him his armor so his quest can continue.","Siegward","missable"],
+["Find the Cleric's Braille Divine Tome","Locate the Deep tome and keep the Irina route decision in mind.","Collectible"],
+["Check Rosaria's chamber","Find Rosaria and understand the Sirris quest conflict before offering a Pale Tongue.","Rosaria","missable"],
+["Collect the roof Estus Shard","Explore the rafters/roof route and check the crow-trade nest if collecting all items.","Andre","collectible"],
+["Defeat Deacons of the Deep","Complete the boss and return to Firelink to check NPC dialogue and new options.","Boss progression"]]},
+{name:"Farron Keep",tasks:[
+["Find Sage's Coal","Give the coal to Andre to unlock additional infusion options.","Andre","collectible"],
+["Deliver all available scrolls to Orbeck","Check Sage's and Golden Scrolls, then continue collecting later scrolls.","Orbeck","missable"],
+["Join Watchdogs of Farron if desired","Interact with the covenant altar near the Keep Ruins bonfire.","Covenant"],
+["Collect Dreamchaser's Ashes","Find the ashes behind the illusory wall near the Watchdogs area and give them to the Handmaid.","Handmaid","collectible"],
+["Speak to Sirris after the ashes","Return to Firelink and exhaust Sirris' dialogue to advance her quest.","Sirris","missable"],
+["Resolve the Heysel gesture route","Check whether the conditions for Yellowfinger Heysel's summon and gesture are still available.","Heysel","missable"],
+["Collect the Proper Bow gesture","Check the relevant NPC invasion/summon conditions before defeating the Abyss Watchers.","Gesture","missable"],
+["Defeat Abyss Watchers","Before leaving the region, make sure Yoel's five Dark Sigils and other early tasks are done.","Boss progression","missable"]]},
+{name:"Catacombs of Carthus & Smouldering Lake",tasks:[
+["Speak to Anri in the Catacombs","Find Anri along the route and exhaust dialogue; their next location depends on progression.","Anri","missable"],
+["Find Carthus Pyromancy Tome","Collect the tome and give it to the appropriate pyromancy teacher.","Collectible"],
+["Collect Catacombs Estus Shard","Search the rolling skeleton-ball route and nearby rooms for the shard.","Andre","collectible"],
+["Collect Grave Warden's Ashes","Find the ashes and give them to the Shrine Handmaid.","Handmaid","collectible"],
+["Cross the rope bridge","Break the bridge when appropriate to open the route down toward Smouldering Lake.","Progression"],
+["Find Izalith Pyromancy Tome","Explore Demon Ruins and give the tome to the appropriate teacher.","Collectible"],
+["Find Quelana Pyromancy Tome","Search the Demon Ruins/lava route for the tome; use a safe route through the lava.","Collectible"],
+["Find the Grave Warden Pyromancy Tome","Collect the tome and plan to give it to Karla rather than Irina if preserving Irina's good route.","Collectible","missable"],
+["Encounter Knight Slayer Tsorig","Check the Demon Ruins and Smouldering Lake routes for the NPC encounter and associated rewards.","NPC"],
+["Find Horace","Locate Horace in the Smouldering Lake area and decide how to handle his quest before reporting to Anri.","Horace","missable"],
+["Report to Anri","Return to Anri after the Catacombs encounter and give the appropriate information based on your chosen route.","Anri","missable"]]},
+{name:"Irithyll of the Boreal Valley & Anor Londo",tasks:[
+["Advance Sirris and Creighton's encounter","Check the bridge invasion/summon sequence and defeat the invader when available.","Sirris","missable"],
+["Meet Anri at the Church of Yorshka","Speak to Anri and make the route decision before proceeding through the area.","Anri","missable"],
+["Handle the pilgrim at the Church","The pilgrim's presence and your choice can change Anri's outcome and the Usurpation route.","Anri","missable"],
+["Collect Irithyll Estus Shard","Search the sewer/kitchen route and surrounding rooms for the shard.","Andre","collectible"],
+["Find Siegward in the kitchen","Exhaust his dialogue and collect the Estus Soup if available.","Siegward"],
+["Prepare Greirat's second pillage","Before sending him, check the protective NPC conditions in Irithyll; confirm Siegward/Patches progression.","Greirat","missable"],
+["Check Gotthard and Pale Shade gestures","Verify the summon/invasion conditions in the area before defeating Pontiff.","Gesture","missable"],
+["Join Aldrich Faithful if desired","Find the covenant access in the area below Pontiff's route.","Covenant"],
+["Complete Anri's chosen route","Follow the route-specific steps before and after Anor Londo; do not mix the alternate outcomes.","Anri","missable"],
+["Find Giant's Coal","Collect the coal in Anor Londo and give it to Andre.","Andre","collectible"],
+["Defeat Aldrich","After the boss, check Anri's route-specific follow-up and Firelink dialogue.","Boss progression","missable"],
+["Complete Sirris's quest before Rosaria","Finish the invasion/help sequence and collect Sirris's rewards before committing to Rosaria.","Sirris","missable"],
+["Receive Sirris's rewards","Return to Firelink after her quest finale and exhaust dialogue.","Sirris","missable"]]},
+{name:"Irithyll Dungeon & Profaned Capital",tasks:[
+["Find the Jailer’s Key Ring","Search the dungeon's upper routes and use it to unlock additional cells.","Collectible"],
+["Rescue Siegward","Find and free Siegward from his cell so his quest can continue into the Yhorm encounter.","Siegward","missable"],
+["Find Profaned Coal","Collect it in the dungeon and give it to Andre.","Andre","collectible"],
+["Rescue Karla","Use the appropriate key to unlock her cell; recruit her to Firelink.","Karla"],
+["Give Karla the dark tomes","Give dark tomes to Karla to avoid sending Irina down the dark route.","Karla"],
+["Find Logan's Scroll","Search the Profaned Capital and deliver it to Orbeck.","Orbeck","collectible"],
+["Find Prison Chief's Ashes","Collect the ashes and give them to the Shrine Handmaid.","Handmaid","collectible"],
+["Check Gilligan's final interaction","Speak to Gilligan in the Profaned Capital and collect his available gesture/reward.","Gilligan"],
+["Defeat Yhorm the Giant","If Siegward's quest was completed correctly, he will join this encounter.","Boss progression","missable"]]},
+{name:"Consumed King's Garden, Untended Graves & Archdragon Peak",tasks:[
+["Collect the Consumed King's Garden shard","Search the route toward Oceiros for the Undead Bone Shard.","Collectible"],
+["Acquire Path of the Dragon gesture","Find the gesture after the Oceiros/Consumed King's Garden progression.","Gesture"],
+["Find the Eyes of a Fire Keeper","Explore the hidden Firelink Shrine in Untended Graves and retrieve the Eyes.","Fire Keeper","ending"],
+["Give the Eyes to the Fire Keeper","This enables the End of Fire ending choice; understand the ending variation before proceeding.","Fire Keeper","ending"],
+["Resolve Hawkwood's quest","Return to Firelink and follow his challenge after the required boss/gesture progression.","Hawkwood","missable"],
+["Reach Archdragon Peak","Use Path of the Dragon at the correct location to access the area.","Progression"],
+["Collect Dragon Head and Torso Stones","Complete the relevant Archdragon Peak interactions and boss encounters.","Collectible"],
+["Defeat the Nameless King if desired","Complete the optional boss and collect the rewards before final progression.","Boss progression"]]},
+{name:"Lothric Castle & Irina",tasks:[
+["Refuse Greirat's Lothric Castle expedition","If you want to preserve Greirat's survival, do not send him on this final pillage.","Greirat","missable"],
+["Collect Lothric Castle Undead Bone Shard","Search the castle approach for the shard.","Collectible"],
+["Find the Praise the Sun gesture","Check the Dragonslayer Armour area and nearby route for the gesture.","Gesture","collectible"],
+["Resolve Eygon and Irina's outcome","If following Irina's good route, buy all non-dark miracles and avoid buying dark miracles from her.","Irina","missable"],
+["Give the Lothric Braille Divine Tome to Irina or Karla","Use the route decision: dark tome purchases from Irina can change her ending.","Irina","missable"],
+["Check Irina's final state","After progression, return to her location and complete the route-specific interaction.","Irina","missable"]]},
+{name:"Grand Archives",tasks:[
+["Find Crystal Scroll","Collect the scroll and deliver it to Orbeck.","Orbeck","collectible"],
+["Buy Orbeck's available spells","Purchase enough spells after giving him scrolls to advance his rewards and quest.","Orbeck","missable"],
+["Receive Orbeck's Young Dragon gesture/reward","Check his dialogue after giving scrolls and buying spells.","Orbeck","missable"],
+["Complete Orbeck's quest before final boss","Summon him where available, complete the final quest interaction, and collect his ashes if he dies/quest ends.","Orbeck","missable"],
+["Collect the Grand Archives Estus Shard","Search the upper route and rooftop area for the shard.","Collectible"],
+["Collect Grand Archives Undead Bone Shard","Search the Archives for the shard and add it to the bonfire.","Collectible"],
+["Complete Leonhard's quest","Follow his final sequence after the Rosaria progression and claim the reward.","Leonhard","missable"],
+["Recover Rosaria's Soul if following Leonhard","Complete the final invasion/quest sequence and decide whether to return the soul or use it.","Leonhard","missable"],
+["Check remaining NPCs before final area","Return to Firelink and exhaust dialogue for all NPCs whose quests are still active.","Firelink"]]},
+{name:"Kiln of the First Flame & Endings",tasks:[
+["Review ending prerequisites","Before entering the final sequence, confirm which ending route you intend to complete.","Ending","ending"],
+["Usurpation of Fire prerequisites","Confirm five Dark Sigils, Yuria's quest state, and the required Anri sequence; do not heal Dark Sigils.","Ending","ending"],
+["End of Fire prerequisites","Carry the Eyes of a Fire Keeper and complete the associated Fire Keeper interaction.","Ending","ending"],
+["Link the First Flame","Choose the standard bonfire interaction after the final boss.","Ending","ending"],
+["End of Fire","Use the Fire Keeper summon sign/interaction according to the Eyes route.","Ending","ending"],
+["Alternate End of Fire","The Fire Keeper ending has an alternate variation based on a final action; this is a separate outcome.","Ending","ending"],
+["Usurpation of Fire","Complete the route-specific final interaction after fulfilling the Londor quest requirements.","Ending","ending"]]}
+];
+const storageKey="ds3-quest-companion-v1";
+let progress={};let current=0;
+const $=id=>document.getElementById(id);
+const allTasks=()=>areas.flatMap((a,ai)=>a.tasks.map((t,ti)=>({area:ai,idx:ti,id:`${ai}-${ti}`,title:t[0],desc:t[1],npc:t[2]||"General",tags:t.slice(3),done:!!progress[`${ai}-${ti}`]})));
+try{progress=JSON.parse(localStorage.getItem(storageKey)||"{}")||{}}catch(e){progress={}}
+function save(){try{localStorage.setItem(storageKey,JSON.stringify(progress))}catch(e){alert("Browser storage is unavailable. Export a backup to keep your progress.")}}
+function renderAreas(){const list=$("areaList"),mob=$("areaMobile");list.replaceChildren();mob.replaceChildren();areas.forEach((a,i)=>{const items=a.tasks,done=items.filter((t,j)=>progress[`${i}-${j}`]).length;const b=document.createElement("button");b.className="area-btn"+(i===current?" active":"");b.innerHTML=`<span>${a.name}</span><span class="count">${done}/${items.length}</span>`;b.onclick=()=>{current=i;render()};list.append(b);const o=document.createElement("option");o.value=i;o.textContent=`${a.name} (${done}/${items.length})`;mob.append(o)});mob.value=current}
+function renderStats(){const items=allTasks(),done=items.filter(x=>x.done).length,miss=items.filter(x=>x.tags.includes("missable")&&!x.done).length,area=items.filter(x=>x.area===current);$("doneCount").textContent=`${done} / ${items.length}`;$("percent").textContent=Math.round(done/items.length*100)+"%";$("overallBar").style.width=(done/items.length*100)+"%";$("missableLeft").textContent=miss;$("areaProgress").textContent=`${area.filter(x=>x.done).length} / ${area.length}`;$("areaLabel").textContent=areas[current].name}
+function renderTasks(){
+ const q=$("search").value.trim().toLowerCase(),st=$("status").value,sort=$("sort").value,global=$("globalSearch").checked;
+ let items=allTasks().filter(x=>(global||x.area===current))
+  .filter(x=>!q||(x.title+" "+x.desc+" "+x.npc+" "+areas[x.area].name+" "+x.tags.join(" ")).toLowerCase().includes(q))
+  .filter(x=>st==="all"||(st==="open"&&!x.done)||(st==="done"&&x.done)||(st==="missable"&&x.tags.includes("missable")&&!x.done)||(st==="collectible"&&x.tags.includes("collectible"))||(st==="gesture"&&x.tags.includes("gesture"))||(st==="ending"&&x.tags.includes("ending")));
+ if(sort==="az")items.sort((a,b)=>a.title.localeCompare(b.title));
+ if(sort==="missable")items.sort((a,b)=>Number(b.tags.includes("missable"))-Number(a.tags.includes("missable"))||a.area-b.area||a.idx-b.idx);
+ $("resultCount").textContent=global?`${items.length} results across all areas`:`${items.length} of ${areas[current].tasks.length} tasks`;
+ $("areaTitle").textContent=global?"Search results":areas[current].name;
+ $("areaEyebrow").textContent=global?"Whole-run search":`Area ${current+1} of ${areas.length} · Chronological checklist`;
+ const list=$("tasks");list.replaceChildren();
+ if(!items.length){list.innerHTML='<div class="empty">No tasks match these filters.</div>';return}
+ let lastArea=-1;
+ items.forEach(x=>{
+  if(global&&x.area!==lastArea){const h=document.createElement("h3");h.className="section-title";h.style.margin="14px 0 2px";h.textContent=areas[x.area].name;list.append(h);lastArea=x.area}
+  const card=document.createElement("article");card.className="task"+(x.done?" done":"")+(x.tags.includes("missable")&&!x.done?" missable":"");
+  const cb=document.createElement("input");cb.type="checkbox";cb.checked=x.done;cb.setAttribute("aria-label","Mark "+x.title+" complete");cb.onchange=()=>{progress[x.id]=cb.checked;save();render()};
+  const body=document.createElement("div");body.className="task-body";
+  const title=document.createElement("div");title.className="task-title";title.textContent=x.title;
+  const desc=document.createElement("div");desc.className="task-desc";desc.textContent=x.desc;
+  const meta=document.createElement("div");meta.className="meta";
+  const n=document.createElement("span");n.className="tag";n.textContent=x.npc;meta.append(n);
+  const areaTag=document.createElement("span");areaTag.className="tag";areaTag.textContent=areas[x.area].name;meta.append(areaTag);
+  x.tags.forEach(t=>{const b=document.createElement("span");b.className="tag"+(t==="missable"?" red":(["ending","collectible"].includes(t)?" gold":""));b.textContent=t==="missable"?"Missable":t==="collectible"?"Collectible":t==="ending"?"Ending":t;meta.append(b)});
+  body.append(title,desc,meta);card.append(cb,body);list.append(card)
+ })
+}
+function render(){renderAreas();renderStats();$("areaTitle").textContent=areas[current].name;$("areaEyebrow").textContent=`Area ${current+1} of ${areas.length} · Chronological checklist`;renderTasks()}
+function exportBackup(){const payload={app:"DS3 Quest & Completion Companion",version:1,exportedAt:new Date().toISOString(),progress};const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="DS3_Quest_Companion_Backup.json";a.click();URL.revokeObjectURL(url)}
+$("exportBtn").onclick=exportBackup;$("importBtn").onclick=()=>$("fileInput").click();$("fileInput").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());const p=obj.progress||obj;if(!p||typeof p!=="object"||Array.isArray(p))throw Error("invalid");if(!confirm("Import this backup and replace current progress?"))return;progress=p;save();render();alert("Backup imported.")}catch(err){alert("Could not import this file. Choose a valid DS3 Quest Companion JSON backup.")}e.target.value=""};
+$("resetAreaBtn").onclick=()=>{if(!confirm(`Reset progress for ${areas[current].name}?`))return;areas[current].tasks.forEach((t,i)=>delete progress[`${current}-${i}`]);save();render()};
+$("resetAllBtn").onclick=()=>{if(!confirm("Reset all checklist progress? Export a backup first if you may need it."))return;progress={};save();render()};
+$("search").oninput=renderTasks;$("status").onchange=renderTasks;$("sort").onchange=renderTasks;$("globalSearch").onchange=renderTasks;$("areaMobile").onchange=e=>{current=Number(e.target.value);$("globalSearch").checked=false;render()};
+$("showAll").onclick=()=>{$("status").value="all";renderTasks()};$("showOpen").onclick=()=>{$("status").value="open";renderTasks()};$("checkArea").onclick=()=>{if(!confirm(`Mark all tasks in ${areas[current].name} complete?`))return;areas[current].tasks.forEach((t,i)=>progress[`${current}-${i}`]=true);save();render()};$("jumpNext").onclick=()=>{const next=areas.findIndex((a,i)=>i>=current&&a.tasks.some((t,j)=>!progress[`${i}-${j}`]));const wrap=next<0?areas.findIndex((a)=>a.tasks.some((t,j)=>!progress[`${areas.indexOf(a)}-${j}`])):next;if(wrap<0){alert("Every listed task is checked off.");return}current=wrap;$("globalSearch").checked=false;$("search").value="";$("status").value="open";render();window.scrollTo({top:0,behavior:"smooth"})};
+$("showRoutes").onclick=()=>{const s=$("routeSection");s.style.display=s.style.display==="none"?"block":"none";if(s.style.display==="block")s.scrollIntoView({behavior:"smooth",block:"start"})};
+render();
+</script>
+</body>
+</html>

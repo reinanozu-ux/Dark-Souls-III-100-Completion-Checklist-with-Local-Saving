@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='black'/><text x='50' y='72' font-size='70' text-anchor='middle' fill='%230077ff'>な</text></svg>">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dark Souls III DLC Completion Checklist</title>
+<style>
+:root{color-scheme:dark;--bg:#101114;--panel:#191b20;--panel2:#22252b;--line:#383b43;--text:#eeeae2;--muted:#aaa9a3;--gold:#d0b477;--green:#83a581;--red:#c8756c;--blue:#8ca8c7}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 12% 0%,#302719 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:28px 22px 20px;border-bottom:1px solid var(--line);background:linear-gradient(110deg,#302719b8,#111216e8 70%)}.wrap,main{max-width:1320px;margin:auto}.eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.15em;font-size:11px;font-weight:750}.hero{display:flex;justify-content:space-between;align-items:end;gap:20px}.hero h1{font:500 clamp(28px,4vw,44px)/1.1 Georgia,serif;margin:8px 0}.hero p{max-width:800px;color:var(--muted);margin:8px 0 0}.pill{border:1px solid #6d5937;color:var(--gold);padding:8px 11px;border-radius:8px;font-size:12px;white-space:nowrap}
+main{padding:20px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 16px}.stat,.panel,.task{background:var(--panel);border:1px solid var(--line);border-radius:10px}.stat{padding:13px}.stat span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}.stat strong{display:block;font-size:23px}.barbg{height:6px;border-radius:10px;background:#373940;margin-top:8px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#7b9b75,#d0b477)}
+.notice{background:#29251e;border-left:3px solid var(--gold);padding:12px 14px;border-radius:0 8px 8px 0;color:#ddd2b8;font-size:13px;margin-bottom:16px}.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:16px;align-items:start}.side{position:sticky;top:12px}.panel{padding:14px;margin-bottom:12px}.panel h2{margin:0 0 10px;color:var(--gold);font-size:12px;letter-spacing:.1em;text-transform:uppercase}.areas{display:grid;gap:8px}.area-group{border:1px solid #34363d;border-radius:8px;overflow:hidden}.area{width:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:left;background:transparent;border:1px solid transparent;padding:9px}.area.active{background:#3a3224;border-color:#695637;color:#f0d9a1}.area-label{min-width:0;flex:1}.mini-bar{height:3px;background:#35373d}.mini-bar span{display:block;height:100%;background:linear-gradient(90deg,#7b9b75,#d0b477)}.subareas{padding:5px 7px 8px;background:#141519;display:grid;gap:3px}.subarea{display:flex;justify-content:space-between;align-items:center;gap:6px;width:100%;text-align:left;font-size:12px;padding:6px 8px;background:transparent;border-color:transparent;color:#bcbab3}.subarea.active{color:#f0d9a1;background:#302a20;border-color:#59492f}.subarea .count{white-space:nowrap}.categorybar{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}.category-chip{font-size:12px;padding:7px 10px;border-radius:7px;background:#17191e}.category-chip.active{background:#3a3224;border-color:#8b7044;color:#f0d9a1}.category-chip .count{margin-left:5px}.area{display:flex;justify-content:space-between;gap:8px;text-align:left;background:transparent;border-color:transparent;padding:9px}.area.active{background:#3a3224;border-color:#695637;color:#f0d9a1}.count,.muted{color:var(--muted);font-size:12px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}button,input,select{font:inherit;color:inherit;background:#111318;border:1px solid #464952;border-radius:7px;padding:9px;min-width:0}button{cursor:pointer}button:hover{border-color:var(--gold);color:var(--gold)}button.danger:hover{border-color:var(--red)}.mobile{display:none;width:100%;margin-bottom:10px}.contenthead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.contenthead h2{font:500 25px Georgia,serif;margin:0}.controls{display:grid;grid-template-columns:minmax(160px,2fr) repeat(2,minmax(130px,1fr));gap:8px;margin-bottom:10px}.toolbar{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 14px}.tasks{display:grid;gap:8px}.task{display:flex;gap:11px;padding:12px;border-left:3px solid #4b5059}.task.done{border-left-color:var(--green);background:#19221c}.task.missable{border-left-color:var(--red)}.task input{accent-color:var(--green);width:18px;height:18px;padding:0;margin:4px 0 0;flex-shrink:0}.body{flex:1;min-width:0}.title{font-weight:700}.done .title{color:#b0c9ad}.desc{color:#c3c1ba;font-size:13px;margin-top:3px}.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}.tag{font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:2px 6px;border:1px solid #484b53;border-radius:4px;color:#c8c7c0}.tag.red{border-color:#81504c;color:#efaaa1}.tag.gold{border-color:#78633e;color:#e4ca8d}.empty{text-align:center;padding:30px;border:1px dashed var(--line);border-radius:9px;color:var(--muted)}.sectiontitle{font:500 21px Georgia,serif;margin:22px 0 8px}.footer{margin-top:25px;border-top:1px solid var(--line);padding:18px 0;color:var(--muted);font-size:12px}.footer a{color:var(--gold)}a{color:var(--gold)}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.side{position:static}.side .areapanel{display:none}.mobile{display:block}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{align-items:start;flex-direction:column}.pill{white-space:normal}.controls{grid-template-columns:1fr 1fr}.controls input{grid-column:1/-1}}
+@media(max-width:520px){main{padding:12px}.controls{grid-template-columns:1fr}.controls input{grid-column:auto}.contenthead{align-items:start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">Ashen One's field notes · DLC edition</div>
+<div class="hero"><div><h1>Dark Souls III<br>DLC Completion Checklist</h1><p>A separate, browser-based checklist for both DLCs, organized by questlines and inventory categories: Sorceries, Pyromancies, Miracles, Gestures, Rings, Weapons, Shields, Armor, boss rewards, and other collectibles.</p></div><div class="pill">ASHES OF ARIANDEL + THE RINGED CITY</div></div>
+</div></header>
+<main>
+<div class="stats">
+<div class="stat"><span>Tasks completed</span><strong id="doneCount">0 / 0</strong><div class="barbg"><div class="bar" id="bar"></div></div></div>
+<div class="stat"><span>Completion</span><strong id="percent">0%</strong><div class="muted">Saved in this browser</div></div>
+<div class="stat"><span>Missable tasks left</span><strong id="miss">0</strong><div class="muted">Check before boss progression</div></div>
+<div class="stat"><span>Current category</span><strong id="areaCount">0 / 0</strong><div class="muted" id="areaName">Ashes of Ariandel</div></div>
+</div>
+<div class="notice"><b>How to use:</b> Choose a DLC area in the sidebar, then choose a subcategory inside it to focus on spells, weapons, rings, armor, questlines, bosses, or other collectibles. Progress bars update as you check items off. <b>Coverage note:</b> This is a fan-made DLC checklist assembled from published item and NPC-reward guides. It focuses on unique DLC items, key pickups, boss rewards, and quest steps. Some ordinary consumables, upgrade materials, duplicate drops, and every individual loot corpse are not exhaustively enumerated; use the linked full location guides for a literal item-by-item sweep. Quest outcomes can be missable, so check the route notes before irreversible actions.</div>
+<div class="layout">
+<aside class="side">
+<div class="panel areapanel"><h2>Progress by section</h2><div class="areas" id="areas"></div></div>
+<div class="panel"><h2>Checklist tools</h2><div class="actions"><button id="export">Export backup</button><button id="import">Import backup</button><button id="resetSection" class="danger">Reset category</button><button id="resetAll" class="danger">Reset all</button><input id="file" type="file" accept=".json,application/json" hidden></div><p class="muted">Export before clearing browser data or switching devices. Import replaces current progress.</p></div>
+<div class="panel"><h2>Reference guides</h2>
+<p class="muted"><a href="https://game-checklists.com/darksouls3/painted-world-of-ariandel-checklist/" target="_blank" rel="noopener">Painted World of Ariandel item checklist</a></p>
+<p class="muted"><a href="https://game-checklists.com/darksouls3/dreg-heap-checklist/" target="_blank" rel="noopener">Dreg Heap item checklist</a></p>
+<p class="muted"><a href="https://game-checklists.com/darksouls3/ringed-city-checklist/" target="_blank" rel="noopener">The Ringed City item checklist</a></p>
+<p class="muted"><a href="https://gamefaqs.gamespot.com/ps4/204592-dark-souls-iii-the-ringed-city/faqs/78199/all-npc-rewards-checklist" target="_blank" rel="noopener">Ringed City NPC rewards checklist</a></p>
+</div>
+<div class="panel"><h2>Route notes</h2><p class="muted">Lapp and Shira have multi-step questlines in The Ringed City. Shira's rewards depend on dialogue and later progression. For Lapp, discover the Purging Monument before completing his final sequence.</p><p class="muted">The Painted World has fewer conventional NPC questlines; check the Millwood/Crow settlements, the invading Livid Pyromancer Dunnel, and the Friede/Ariandel boss sequence.</p></div>
+</aside>
+<section>
+<select class="mobile" id="mobileArea" aria-label="Choose section"></select>
+<div class="contenthead"><div><div class="eyebrow" id="eyebrow">DLC checklist</div><h2 id="heading">Ashes of Ariandel · Snowfield</h2></div><div class="muted" id="result">Showing all tasks</div></div><div class="categorybar" id="categorybar"></div>
+<div class="controls"><input id="search" type="search" placeholder="Search item, NPC, boss, or location…"><select id="status"><option value="all">All tasks</option><option value="open">Not completed</option><option value="done">Completed</option><option value="missable">Missable only</option><option value="collectible">Collectibles</option><option value="quest">Quest steps</option><option value="boss">Bosses</option></select><select id="sort"><option value="order">Recommended order</option><option value="az">Name A–Z</option><option value="missable">Missable first</option></select></div>
+<div class="toolbar"><button id="all">Show all</button><button id="open">Show remaining</button><button id="complete">Mark category complete</button><button id="next">Next unfinished section</button></div>
+<div class="tasks" id="tasks"></div>
+</section></div>
+<section id="routes" style="display:none"><h2 class="sectiontitle">DLC quest route reminders</h2>
+<div class="task"><div class="body"><div class="title">Lapp — The Ringed City</div><div class="desc">Speak to Lapp at the collapsed tower, then at Earthen Peak Ruins. Find the Titanite Slab or report its location, speak to him near the Ringed Inner Wall, discover the Purging Monument, and return to him. Continue through the Shared Grave sequence to obtain his armor set. Avoid advancing blindly past each encounter.</div></div></div>
+<div class="task"><div class="body"><div class="title">Shira — The Ringed City</div><div class="desc">Speak to Shira near the Ringed Inner Wall and answer her question as prompted; exhaust dialogue to receive the Sacred Chime of Filianore and her request concerning Darkeater Midir. Her later appearance and reward depend on DLC progression.</div></div></div>
+<div class="task"><div class="body"><div class="title">Ariandel — Friede and the Painter</div><div class="desc">Explore the Painted World before committing to the final boss sequence. Exhaust Friede's dialogue, locate the route into the depths of the painting, defeat the DLC boss, and return to the Painter after the ending to complete the area's narrative interaction.</div></div></div>
+</section>
+<footer class="footer">Progress is saved locally in this browser. Use <b>Export backup</b> before clearing browser data or moving to another device. This file works offline once downloaded. It is an independent fan-made companion, not affiliated with FromSoftware. Assembled by れいな with AI assistance.<br><br>Research references: <a href="https://game-checklists.com/darksouls3/" target="_blank" rel="noopener">Dark Souls III 100% Completion Checklist Hub</a>, <a href="https://gamefaqs.gamespot.com/ps4/204592-dark-souls-iii-the-ringed-city/faqs/78199/all-npc-rewards-checklist" target="_blank" rel="noopener">GameFAQs NPC Rewards Checklist</a>, and <a href="https://www.rpgsite.net/feature/5451-dark-souls-iii-the-ringed-city-guide-where-to-find-all-new-key-items" target="_blank" rel="noopener">RPG Site Ringed City item guide</a>. This checklist is a companion, not a verified exhaustive list of every ordinary pickup.</footer>
+</main>
+<script>const areaSections = [
+{name:"Ashes of Ariandel · Snowfield",dlc:"Ashes of Ariandel",tasks:[
+["Enter the Painted World","Speak to Slave Knight Gael at the Cleansing Chapel and enter the painting.","Gael","quest"],
+["Light Snowfield bonfire","Activate the first bonfire and explore the starting snowfield.","Bonfire","collectible"],
+["Collect Follower Set pieces","Search the snowfield and nearby ruins for the Follower armor pieces.","Armor","collectible"],
+["Collect Follower Javelin","Search the snowfield for the Follower Javelin.","Weapon","collectible"],
+["Collect Millwood Greatbow and Millwood Greatarrows","Explore the Millwood archer area and collect the greatbow and its ammunition.","Weapon","collectible"],
+["Collect Millwood Battle Axe","Search the Millwood settlement/ruins for the axe.","Weapon","collectible"],
+["Collect Ethereal Oak Shield","Find the shield in the Millwood area.","Shield","collectible"],
+["Collect Captain's Ashes","Find the ashes in the Millwood area and give them to the Shrine Handmaid.","Ashes","collectible"],
+["Collect Millwood armor pieces","Search the Millwood area for the complete Millwood set.","Armor","collectible"],
+["Defeat Champion's Gravetender and Gravetender Greatwolf","Reach the optional boss arena and defeat both enemies.","Boss","boss"],
+["Collect Valorheart","Claim the weapon reward from the Champion's Gravetender encounter.","Weapon","collectible"],
+["Collect Champion's Bones","Obtain the boss reward and use it at Firelink Shrine to unlock the Champion's Gravetender bonfire PvP feature.","Key item","collectible"],
+["Collect Chillbite Ring","Find the ring in the Painted World settlement route.","Ring","collectible"],
+["Collect Follower Shield","Search the settlement and snowfield paths.","Shield","collectible"],
+["Collect Follower Torch","Search the settlement and snowfield paths.","Weapon","collectible"],
+["Collect Follower Sabre","Search the settlement and snowfield paths.","Weapon","collectible"],
+["Collect Earth Seeker","Explore the lower/wooded route near the Millwood area.","Greataxe","collectible"],
+["Collect Quakestone Hammer","Search the Millwood/settlement paths.","Hammer","collectible"],
+["Collect Frozen Weapon","Find the sorcery in the Painted World.","Sorcery","collectible"],
+["Collect Snap Freeze","Find the sorcery in the lower frozen area.","Sorcery","collectible"],
+["Collect Way of White Corona","Search the Corvian/settlement route for the miracle.","Miracle","collectible"],
+["Collect Crow Quills","Search the Corvian Settlement rooftops and buildings.","Rapier","collectible"],
+["Collect Crow Talons","Explore the Corvian Settlement rooftops and side paths.","Claws","collectible"],
+["Collect Onyx Blade","Defeat Sir Vilhelm and claim the weapon.","Greatsword","collectible"],
+["Collect Vilhelm's armor set","Loot the armor after the Sir Vilhelm encounter.","Armor","collectible"],
+["Find the Contraption Key","Search the Corvian Settlement for the key used to access a hidden route.","Key item","collectible"],
+["Collect Pyromancer's Parting Flame","Explore the hidden lower area beyond the settlement route.","Pyromancy Flame","collectible"],
+["Collect Floating Chaos","Defeat the invading Livid Pyromancer Dunnel.","Pyromancy","collectible","missable"],
+["Collect Rose of Ariandel","Obtain the boss transposition reward from Sister Friede's soul.","Whip","collectible"],
+["Collect Friede's Great Scythe","Transpose Sister Friede's Soul at Ludleth.","Scythe","collectible"],
+["Collect Ordained armor set","Explore the chapel/boss area and collect the set.","Armor","collectible"],
+["Collect Slave Knight armor set","Find the set in the Painted World area.","Armor","collectible"],
+["Collect all available DLC Titanite Slabs","Search the DLC and complete applicable NPC/boss reward routes for slabs.","Upgrade item","collectible"],
+["Talk to Sister Friede","Exhaust her dialogue in Ariandel Chapel before progressing.","Friede","quest"],
+["Speak to Father Ariandel","Explore the chapel and exhaust dialogue with Ariandel.","Ariandel","quest"],
+["Reach the depths of the painting","Find the route through the roots/low ground to the hidden depths and optional boss.","Progression","quest"],
+["Defeat Sister Friede and Father Ariandel","Complete the main DLC boss encounter and activate the bonfire.","Boss","boss"],
+["Speak to the Painter after the boss","Return to the Painter and exhaust her dialogue after the boss sequence.","Painter","quest"]
+]},
+{name:"The Ringed City · Dreg Heap",dlc:"The Ringed City",tasks:[
+["Enter The Dreg Heap","Use the appropriate bonfire from the endgame or Ashes of Ariandel access route.","Progression","quest"],
+["Collect Splitleaf Greatsword","Buy it from the Stone-humped Hag near the opening bonfire.","Halberd","collectible"],
+["Collect Aquamarine Dagger","Explore the left-hand route near the first Harald-type enemy.","Dagger","collectible"],
+["Collect Murky Hand Scythe","Explore the lower ruins and murkmen room.","Scythe","collectible"],
+["Collect Murky Longstaff","Search the ruins beyond the Lothric Knight route.","Staff","collectible"],
+["Collect Harald Curved Greatsword","Defeat a Harald Legion Knight or find the weapon in the area, as applicable.","Curved greatsword","collectible"],
+["Collect Ruin Set","Explore the Dreg Heap ruins for the armor set.","Armor","collectible"],
+["Collect Desert Pyromancer set","Search the lower ruins and side routes.","Armor","collectible"],
+["Collect Lothric War Banner","Find the banner in the Dreg Heap area.","Spear","collectible"],
+["Collect Ringed Knight armor pieces","Search the Dreg Heap/Ringed City routes for the relevant pieces.","Armor","collectible"],
+["Collect White Preacher Head","Search the swamp/ruins for the unique headpiece.","Armor","collectible"],
+["Collect Black Witch set","Explore the Dreg Heap side paths.","Armor","collectible"],
+["Collect Sacred Chime of Filianore if encountered later","This reward is tied to Shira in the Ringed City; track the quest in that section.","Chime","collectible"],
+["Defeat Demon Prince","Defeat the Demon in Pain and Demon from Below, then the Demon Prince.","Boss","boss"],
+["Collect Demon Prince soul reward","Transpose the Demon Prince soul for its DLC reward option(s).","Boss soul","collectible"],
+["Speak to Lapp at the collapsed tower","Find Lapp and exhaust dialogue.","Lapp","quest","missable"],
+["Speak to Lapp at Earthen Peak Ruins","Continue his dialogue and quest sequence.","Lapp","quest","missable"],
+["Find the Titanite Slab for Lapp","Locate the slab or follow the dialogue branch that rewards it; check Lapp before advancing.","Lapp","quest","missable"],
+["Check the Angel summoners","Find and defeat the summoners responsible for the flying angels to make exploration safer.","Enemy mechanic","quest"]
+]},
+{name:"The Ringed City · Earthen Peak Ruins",dlc:"The Ringed City",tasks:[
+["Collect Desert Pyromancer Gloves","Search the Earthen Peak ruins and swamp route.","Armor","collectible"],
+["Collect Harald Legion armor pieces","Explore the swamp and nearby paths for the armor pieces.","Armor","collectible"],
+["Collect Earth Seeker if not found earlier","Sweep the side paths and confirm the weapon is in inventory.","Greataxe","collectible"],
+["Collect Ring of Favor +3","Search the DLC's swamp/ruin routes for the ring.","Ring","collectible"],
+["Collect Chloranthy Ring +3","Explore the swamp/ruins side route for the ring.","Ring","collectible"],
+["Collect Havel's Ring +3","Search the appropriate elevated/hidden route in the DLC.","Ring","collectible"],
+["Collect all visible DLC spells in this section","Sweep the ruins and swamp for any uncollected spell pickup; use the linked location guide to verify exact placements.","Spells","collectible"],
+["Check Lapp's next position","Return to Lapp after the slab interaction and exhaust dialogue.","Lapp","quest","missable"]
+]},
+{name:"The Ringed City · Inner City and swamp",dlc:"The Ringed City",tasks:[
+["Collect Ringed Knight Paired Greatswords","Defeat the Ringed Knight guarding the weapon near the Ringed City route.","Paired greatswords","collectible"],
+["Collect Ritual Spear Fragment","Search near the Ringed Knight route beyond the shortcut elevator.","Tool","collectible"],
+["Collect Wolf Ring +3","Defeat Seeker of the Spurned and claim the ring.","Ring","collectible"],
+["Collect Ledo's Great Hammer","Defeat Silver Knight Ledo in his invasion encounter.","Great hammer","collectible","missable"],
+["Collect Ringed Knight Spear","Explore the Ringed City and defeat/search Ringed Knights.","Spear","collectible"],
+["Collect Ringed Knight Straight Sword","Explore the Ringed City and defeat/search Ringed Knights.","Straight sword","collectible"],
+["Collect Ringed Knight armor set","Search the Ringed City for all pieces.","Armor","collectible"],
+["Collect White Preacher Head if missed","Search the swamp and side routes.","Armor","collectible"],
+["Collect Blindfold Mask","Defeat the Moaning Knight invasion encounter.","Armor","collectible","missable"],
+["Find the Purging Monument","Explore the swamp and unlock the route to the monument; needed for Lapp's quest.","Key location","quest","missable"],
+["Speak to Lapp after finding the Purging Monument","Return to Lapp and select the dialogue option about the monument.","Lapp","quest","missable"],
+["Find Lapp at the Shared Grave","Continue to the Shared Grave and exhaust dialogue.","Lapp","quest","missable"],
+["Complete Lapp's trap sequence","After the trap, return to the relevant location and collect Lapp's armor set.","Lapp","quest","missable"],
+["Speak to Shira near Ringed Inner Wall","Find Shira's door, exhaust dialogue, and respond to her question as prompted.","Shira","quest","missable"],
+["Receive Sacred Chime of Filianore","Accept Shira's request and exhaust dialogue to receive the chime.","Shira","collectible","missable"],
+["Accept Shira's request to defeat Darkeater Midir","Agree to her request before progressing too far.","Shira","quest","missable"],
+["Defeat Darkeater Midir","Find the route to the optional boss and defeat Midir.","Boss","boss"],
+["Collect Midir's boss soul reward","Transpose Midir's soul for the available DLC reward(s).","Boss soul","collectible"],
+["Collect Frayed Blade","Transpose Darkeater Midir's Soul for the katana.","Katana","collectible"],
+["Collect Old Moonlight","Transpose Darkeater Midir's Soul for the sorcery.","Sorcery","collectible"],
+["Collect Wolf Ring +3 if missed","Confirm the ring is in inventory after the invader encounter.","Ring","collectible"]
+]},
+{name:"The Ringed City · Church and ending",dlc:"The Ringed City",tasks:[
+["Collect Ringed City items along the main route","Sweep the main street, side gardens, and shortcuts before entering the final boss sequence.","Area sweep","collectible"],
+["Collect Sacred Chime of Filianore if missed","Confirm Shira gave the chime before her quest state changes.","Chime","collectible","missable"],
+["Defeat Halflight, Spear of the Church","Defeat the boss guarding the Church of Filianore; online play may affect the encounter.","Boss","boss"],
+["Collect Filianore's Spear Ornament","Claim the boss reward after defeating Halflight.","Key item","collectible"],
+["Collect the Halflight Titanite Slab","Claim the Titanite Slab reward from the encounter.","Upgrade item","collectible"],
+["Reach Filianore's Rest","Continue beyond the Church of Filianore and activate the bonfire.","Bonfire","collectible"],
+["Trigger the endgame transition","Interact with Filianore's egg as intended by the story and proceed into the final area.","Progression","quest"],
+["Collect Ringed Knight armor/weapons missed earlier","Backtrack and verify all Ringed Knight drops and set pieces.","Equipment","collectible"],
+["Defeat Slave Knight Gael","Complete the final DLC boss fight at the end of the world.","Boss","boss"],
+["Collect Soul of Slave Knight Gael","Claim the boss soul and transpose it for the available reward(s).","Boss soul","collectible"],
+["Collect Repeating Crossbow","Transpose Gael's Soul for the crossbow.","Crossbow","collectible"],
+["Collect Gael's Greatsword","Transpose Gael's Soul for the greatsword.","Greatsword","collectible"],
+["Complete Shira's final encounter","After the relevant boss progression, find Shira near the Gael route and resolve the encounter.","Shira","quest","missable"],
+["Collect Crucifix of the Mad King","Claim the weapon associated with Shira's final encounter.","Halberd","collectible","missable"],
+["Collect Shira's armor set","Return to the place where you first met Shira and loot the set after her quest ends.","Armor","collectible","missable"],
+["Collect all DLC rings","Verify Chillbite, Ring of Favor +3, Chloranthy +3, Havel's +3, Wolf +3, and any other DLC rings against the full location checklist.","Rings","collectible"],
+["Collect all DLC gestures and quest rewards","Review the full inventory and quest reward guides for any missed DLC-specific reward.","Completion sweep","collectible"]
+]}
+];
+const categoryOrder = [
+  "Questlines", "Sorceries", "Pyromancies", "Miracles", "Gestures",
+  "Rings", "Weapons", "Shields", "Armor", "Bosses & Boss Rewards",
+  "Key Items & Upgrade Materials", "Other Collectibles & Exploration"
+];
+function categoryFor(task) {
+  const title = task[0] || "", kind = task[2] || "";
+  const tags = task.slice(3);
+  const s = (title + " " + kind).toLowerCase();
+  if (tags.includes("quest")) return "Questlines";
+  if (/\bgesture\b|\bgestures\b|\bmy thanks\b|\btoast\b|\bsleep\b/.test(s)) return "Gestures";
+  if (/\bsorcery\b|\bsorceries\b|\bfrozen weapon\b|\bsnap freeze\b|\bold moonlight\b/.test(s)) return "Sorceries";
+  if (/\bpyromanc(y|ies|er)\b|\bfloating chaos\b|\bparting flame\b/.test(s)) return "Pyromancies";
+  if (/\bmiracle\b|\bmiracles\b|\bway of white corona\b/.test(s)) return "Miracles";
+  if (/\bring\b|\brings\b/.test(s)) return "Rings";
+  if (/\bshield\b|\bshields\b/.test(s)) return "Shields";
+  if (/\barmor\b|\barmour\b|\bset\b|\bgloves\b|\bmask\b|\bhead\b/.test(s)) return "Armor";
+  if (tags.includes("boss") || /\bdefeat\b|\bboss\b|\bsoul reward\b|\bsoul of\b|\bchampion's bones\b/.test(s)) return "Bosses & Boss Rewards";
+  if (/\bweapon\b|\bsword\b|\bscythe\b|\bblade\b|\bdagger\b|\bquills\b|\btalons\b|\bhammer\b|\bgreatbow\b|\barrows\b|\bspear\b|\bcrossbow\b|\bkatana\b|\bhalberd\b|\bwhip\b|\bclaws\b|\bstaff\b|\bchime\b|\baxe\b|\bpaired greatswords\b|\blongstaff\b|\bhand scythe\b|\bbanner\b|\bquakestone\b|\bvalorheart\b|\bcrucifix\b|\bled o's\b|\bledo's\b|\bsplitleaf\b|\baquamarine\b|\bmurky\b|\bfrayed blade\b|\brepeating crossbow\b|\bgael's greatsword\b|\bearth seeker\b/.test(s)) return "Weapons";
+  if (/\btitanite slab\b|\bashes\b|\bkey\b|\bcontraption\b|\bspear ornament\b|\bupgrade item\b|\bkey item\b|\bmonument\b|\bbonfire\b|\bprogression\b/.test(s)) return "Key Items & Upgrade Materials";
+  return "Other Collectibles & Exploration";
+}
+
+const categoryNames=["All categories",...categoryOrder];
+const key="ds3-dlc-merged-v3";let progress={};let current=0;let currentCategory="All categories";const $=id=>document.getElementById(id);
+const taskId=(ai,ti)=>`${ai}-${ti}`;
+function tasksForArea(ai){return areaSections[ai].tasks.map((t,ti)=>({id:taskId(ai,ti),area:ai,index:ti,title:t[0],desc:t[1],kind:t[2]||"General",tags:t.slice(3),category:categoryFor(t),done:!!progress[taskId(ai,ti)]}))}
+const all=()=>areaSections.flatMap((_,i)=>tasksForArea(i));
+try{
+ const saved=localStorage.getItem(key);
+ if(saved){progress=JSON.parse(saved)||{}}
+ else {
+  // Migrate progress from either uploaded checklist version where possible.
+  const oldArea=JSON.parse(localStorage.getItem("ds3-dlc-companion-v1")||"null");
+  const oldCategory=JSON.parse(localStorage.getItem("ds3-dlc-companion-v2")||"null");
+  if(oldArea && typeof oldArea==="object") {
+   Object.keys(oldArea).forEach(k=>{const [ai,ti]=k.split("-").map(Number);if(areaSections[ai]?.tasks[ti]&&oldArea[k])progress[taskId(ai,ti)]=true});
+  } else if(oldCategory && typeof oldCategory==="object") {
+   categoryOrder.forEach((cat,ci)=>{
+    const categoryTasksOld=areaSections.flatMap((area,ai)=>area.tasks.filter(t=>categoryFor(t)===cat).map(t=>({title:t[0],ai,ti:area.tasks.indexOf(t)})));
+    categoryTasksOld.forEach((t,ti)=>{if(oldCategory[`${ci}-${ti}`])progress[taskId(t.ai,t.ti)]=true});
+   });
+  }
+  if(Object.keys(progress).length) localStorage.setItem(key,JSON.stringify(progress));
+ }
+}catch(e){progress={}}
+function save(){try{localStorage.setItem(key,JSON.stringify(progress))}catch(e){alert("Local storage is unavailable. Export a backup to keep your progress.")}}
+function categoryTasks(ai,cat){let ts=tasksForArea(ai);return cat==="All categories"?ts:ts.filter(t=>t.category===cat)}
+function render(){renderAreas();renderStats();renderCategoryBar();renderTasks()}
+function renderAreas(){
+ const a=$("areas"),m=$("mobileArea");a.replaceChildren();m.replaceChildren();
+ areaSections.forEach((s,i)=>{
+  const ts=tasksForArea(i),done=ts.filter(t=>t.done).length,group=document.createElement("div");group.className="area-group";
+  const b=document.createElement("button");b.className="area"+(i===current?" active":"");
+  const label=document.createElement("span");label.className="area-label";label.textContent=s.name;
+  const count=document.createElement("span");count.className="count";count.textContent=`${done}/${ts.length}`;
+  b.append(label,count);b.onclick=()=>{current=i;currentCategory="All categories";render()};group.append(b);
+  const mb=document.createElement("div");mb.className="mini-bar";const fill=document.createElement("span");fill.style.width=(ts.length?done/ts.length*100:0)+"%";mb.append(fill);group.append(mb);
+  if(i===current){const subs=document.createElement("div");subs.className="subareas";
+   const cats=["All categories",...categoryOrder.filter(c=>ts.some(t=>t.category===c))];
+   cats.forEach(cat=>{const ct=categoryTasks(i,cat),cd=ct.filter(t=>t.done).length,btn=document.createElement("button");btn.className="subarea"+(currentCategory===cat?" active":"");const nm=document.createElement("span");nm.textContent=cat;const cn=document.createElement("span");cn.className="count";cn.textContent=`${cd}/${ct.length}`;btn.append(nm,cn);btn.onclick=()=>{currentCategory=cat;render()};subs.append(btn)});
+   group.append(subs);
+  }
+  a.append(group);const o=document.createElement("option");o.value=i;o.textContent=`${s.name} (${done}/${ts.length})`;m.append(o)
+ });m.value=current
+}
+function renderStats(){const ts=all(),d=ts.filter(x=>x.done).length,miss=ts.filter(x=>x.tags.includes("missable")&&!x.done).length,at=tasksForArea(current);$("doneCount").textContent=`${d} / ${ts.length}`;$("percent").textContent=Math.round(d/ts.length*100)+"%";$("bar").style.width=(d/ts.length*100)+"%";$("miss").textContent=miss;$("areaCount").textContent=`${at.filter(x=>x.done).length} / ${at.length}`;$("areaName").textContent=areaSections[current].name}
+function renderCategoryBar(){const bar=$("categorybar");bar.replaceChildren();const cats=["All categories",...categoryOrder.filter(c=>tasksForArea(current).some(t=>t.category===c))];cats.forEach(cat=>{const ts=categoryTasks(current,cat),done=ts.filter(t=>t.done).length,b=document.createElement("button");b.className="category-chip"+(currentCategory===cat?" active":"");b.textContent=cat;const count=document.createElement("span");count.className="count";count.textContent=`${done}/${ts.length}`;b.append(count);b.onclick=()=>{currentCategory=cat;render()};bar.append(b)})}
+function renderTasks(){const q=$("search").value.trim().toLowerCase(),st=$("status").value,sort=$("sort").value;let ts=categoryTasks(current,currentCategory).filter(x=>!q||(x.title+" "+x.desc+" "+x.kind+" "+areaSections[x.area].name+" "+x.category+" "+x.tags.join(" ")).toLowerCase().includes(q)).filter(x=>st==="all"||(st==="open"&&!x.done)||(st==="done"&&x.done)||(st==="missable"&&x.tags.includes("missable")&&!x.done)||(st==="collectible"&&x.tags.includes("collectible"))||(st==="quest"&&x.tags.includes("quest"))||(st==="boss"&&x.tags.includes("boss")));if(sort==="az")ts.sort((a,b)=>a.title.localeCompare(b.title));if(sort==="missable")ts.sort((a,b)=>Number(b.tags.includes("missable"))-Number(a.tags.includes("missable"))||a.index-b.index);$("heading").textContent=areaSections[current].name;$("eyebrow").textContent=`${areaSections[current].dlc} · ${currentCategory}`;$("result").textContent=`${ts.length} of ${categoryTasks(current,currentCategory).length} tasks`;const list=$("tasks");list.replaceChildren();if(!ts.length){list.innerHTML='<div class="empty">No tasks match these filters.</div>';return}ts.forEach(x=>{const card=document.createElement("article");card.className="task"+(x.done?" done":"")+(x.tags.includes("missable")&&!x.done?" missable":"");const cb=document.createElement("input");cb.type="checkbox";cb.checked=x.done;cb.setAttribute("aria-label","Mark "+x.title+" complete");cb.onchange=()=>{progress[x.id]=cb.checked;save();render()};const body=document.createElement("div");body.className="body";const title=document.createElement("div");title.className="title";title.textContent=x.title;const desc=document.createElement("div");desc.className="desc";desc.textContent=x.desc;const tags=document.createElement("div");tags.className="tags";[x.category,x.kind,...x.tags.map(t=>t==="missable"?"Missable":t==="collectible"?"Collectible":t==="quest"?"Quest step":t==="boss"?"Boss":t)].forEach(t=>{const z=document.createElement("span");z.className="tag"+(t==="Missable"?" red":t==="Collectible"?" gold":"");z.textContent=t;tags.append(z)});body.append(title,desc,tags);card.append(cb,body);list.append(card)})}
+function exportData(){const blob=new Blob([JSON.stringify({app:"DS3 DLC Completion Checklist",version:3,exportedAt:new Date().toISOString(),progress},null,2)],{type:"application/json"});const u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="DS3_DLC_Checklist_Backup.json";a.click();URL.revokeObjectURL(u)}
+$("export").onclick=exportData;$("import").onclick=()=>$("file").click();$("file").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const o=JSON.parse(await f.text()),p=o.progress||o;if(!p||typeof p!=="object"||Array.isArray(p))throw Error();if(!confirm("Import this backup and replace current progress?"))return;progress=p;save();render();alert("Backup imported. If the backup came from a different checklist layout, item progress may not map perfectly.")}catch(err){alert("Could not import this backup file.")}e.target.value=""};
+$("resetSection").onclick=()=>{if(!confirm(`Reset progress for ${areaSections[current].name}?`))return;areaSections[current].tasks.forEach((_,i)=>delete progress[taskId(current,i)]);save();render()};
+$("resetAll").onclick=()=>{if(!confirm("Reset all DLC checklist progress? Export a backup first if needed."))return;progress={};save();render()};
+$("search").oninput=renderTasks;$("status").onchange=renderTasks;$("sort").onchange=renderTasks;$("mobileArea").onchange=e=>{current=Number(e.target.value);currentCategory="All categories";render()};
+$("all").onclick=()=>{$("status").value="all";renderTasks()};$("open").onclick=()=>{$("status").value="open";renderTasks()};$("complete").onclick=()=>{if(!confirm(`Mark all tasks in ${areaSections[current].name} complete?`))return;areaSections[current].tasks.forEach((_,i)=>progress[taskId(current,i)]=true);save();render()};
+$("next").onclick=()=>{let next=areaSections.findIndex((s,i)=>i>=current&&tasksForArea(i).some(t=>!t.done));if(next<0)next=areaSections.findIndex((s,i)=>tasksForArea(i).some(t=>!t.done));if(next<0){alert("Every listed task is checked off.");return}current=next;currentCategory="All categories";$("search").value="";$("status").value="open";render();window.scrollTo({top:0,behavior:"smooth"})};
+render();
+</script>
+</body>
+</html>

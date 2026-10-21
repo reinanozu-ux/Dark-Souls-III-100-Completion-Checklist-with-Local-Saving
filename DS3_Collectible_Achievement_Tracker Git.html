@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DS3 Achievement Tracker</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='black'/><text x='50' y='72' font-size='70' text-anchor='middle' fill='%2300AA00'>い</text></svg>">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#101114;
+  --panel:#191b20;
+  --panel-raised:#20232a;
+  --line:#363a43;
+  --line-strong:#464952;
+  --text:#eeeae2;
+  --muted:#a8a7a2;
+  --gold:#c9a765;
+  --gold-soft:#e0c98d;
+  --green:#779b76;
+  --green-bg:#19221c;
+  --radius:9px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:radial-gradient(ellipse at 15% 0%,#27231b 0,transparent 35%),var(--bg);
+  color:var(--text);
+  font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+header{
+  padding:26px 22px 20px;
+  background:linear-gradient(110deg,rgba(60,47,27,.8),rgba(17,18,22,.85) 65%);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 8px 30px rgba(0,0,0,.15);
+}
+main{width:min(100%,1280px);margin:0 auto;padding:22px}
+.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:var(--gold-soft);font-weight:750}
+h1{font-family:Georgia,serif;font-weight:500;font-size:clamp(28px,4vw,44px);line-height:1.08;margin:8px 0}
+.muted{color:var(--muted)}
+header .muted{max-width:760px;margin:8px 0 0}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin:23px 0 15px;
+}
+.stat,.controls,.entry{
+  background:rgba(27,29,33,.96);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+}
+.stat{padding:14px 14px;min-width:0}
+.stat strong{display:block;font-size:clamp(21px,2.5vw,27px);font-variant-numeric:tabular-nums;line-height:1.35;color:#f0e4c8}
+.stat span{
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.095em;
+  margin-bottom:4px;
+}
+.progress{height:8px;background:#34363d;border-radius:99px;overflow:hidden;border:1px solid #3d3f46}
+.bar{height:100%;background:linear-gradient(90deg,#7b986f,#c8b16f);width:0;transition:width .2s ease}
+.workspace{display:grid;grid-template-columns:235px minmax(0,1fr);gap:18px;align-items:start}
+.sidebar{position:sticky;top:14px;display:grid;gap:12px;min-width:0}
+.side-panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:13px}
+.side-title{font-size:11px;text-transform:uppercase;letter-spacing:.13em;color:var(--gold-soft);font-weight:800;margin:0 0 9px}
+.tabs{display:grid;gap:5px;margin:0}
+.tabs button{width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px;font-size:13px}
+.tabs .tab-count{color:var(--muted);font-size:11px;white-space:nowrap}
+.side-tools{display:grid;gap:7px}
+.side-tools button{width:100%;text-align:left;font-size:13px}
+.side-tools .tool-divider{height:1px;background:var(--line);margin:3px 0}
+#resetBtn,#resetAllBtn{border-color:#654d43;color:#e2b7a7}
+#resetBtn:hover,#resetAllBtn:hover{background:#34221f;border-color:#a66f5a}
+.main-content{min-width:0}
+
+button,input,select{
+  font:inherit;
+  color:var(--text);
+  background:#121318;
+  border:1px solid #41444e;
+  border-radius:8px;
+  padding:10px 12px;
+  min-width:0;
+}
+button{cursor:pointer;transition:background-color .15s,border-color .15s,transform .15s}
+button:hover{border-color:var(--gold);background:#25221c}
+button:active{transform:translateY(1px)}
+button.active{background:#3b3224;border-color:#695637;color:#f0d9a1;box-shadow:inset 0 0 0 1px rgba(216,182,106,.12)}
+input::placeholder{color:#888a91}
+input:focus-visible,select:focus-visible,button:focus-visible,.entry input:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:2px;
+}
+.controls{
+  padding:14px;
+  display:grid;
+  grid-template-columns:minmax(220px,2fr) repeat(2,minmax(150px,1fr));
+  gap:10px;
+  margin-bottom:13px;
+}
+.controls input,.controls select{width:100%}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:13px 0 16px}
+.actions button{font-size:14px}
+#resetBtn{border-color:#654d43;color:#e2b7a7}
+#resetBtn:hover{background:#34221f;border-color:#a66f5a}
+#resultCount{font-size:13px;margin:0 2px 10px}
+.list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.entry{
+  padding:14px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  border-left:3px solid #555a65;
+  transition:background-color .15s,border-color .15s;
+  min-width:0;
+}
+.entry:hover{background:var(--panel-raised);border-top-color:#555966;border-right-color:#555966;border-bottom-color:#555966}
+.entry.owned{background:var(--green-bg);border-left-color:var(--green)}
+.entry.owned:hover{background:#213126}
+.entry label{display:flex;gap:11px;flex:1;min-width:0;cursor:pointer}
+.entry input{
+  appearance:auto;
+  width:18px;height:18px;
+  margin:3px 0 0;
+  padding:0;
+  accent-color:var(--green);
+  flex-shrink:0;
+  cursor:pointer;
+}
+.name{font-weight:650;line-height:1.4;overflow-wrap:anywhere}
+.entry.owned .name{color:#dcebd8}
+.how{font-size:13px;color:#c1c1c4;margin-top:5px;overflow-wrap:anywhere;line-height:1.5}
+.how a{color:#e0c77f}
+.badge{
+  flex-shrink:0;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.055em;
+  padding:4px 7px;
+  background:#111318;
+  border:1px solid #41444c;
+  border-radius:5px;
+  white-space:nowrap;
+  color:#c9c9cc;
+}
+.entry.owned .badge{color:#c9e2c3;border-color:#47664a;background:#17231a}
+.empty{
+  padding:32px 20px;
+  text-align:center;
+  color:var(--muted);
+  background:var(--panel);
+  border:1px dashed var(--line-strong);
+  border-radius:var(--radius);
+  grid-column:1/-1;
+}
+footer{
+  margin-top:25px;
+  padding:18px 2px 5px;
+  color:var(--muted);
+  font-size:12px;
+  border-top:1px solid var(--line);
+}
+@media(max-width:850px){
+  .workspace{grid-template-columns:1fr}
+  .sidebar{position:static;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  .category-panel{grid-column:1/-1}
+  .tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  header{padding:24px 14px 19px}
+  main{padding:16px}
+  .controls{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .controls input{grid-column:1/-1}
+  .list{grid-template-columns:1fr}
+}
+@media(max-width:460px){
+  .stats{grid-template-columns:1fr;gap:8px}
+  .stat{padding:12px 14px}
+  .stat strong{font-size:22px}
+  .controls{grid-template-columns:1fr;padding:11px}
+  .controls input{grid-column:auto}
+  .sidebar{grid-template-columns:1fr}
+  .category-panel{grid-column:auto}
+  .tabs{grid-template-columns:1fr}
+  .entry{padding:12px;gap:8px}
+  .badge{font-size:9px;padding:4px 5px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+}
+</style></head><body>
+<header><main style="padding:0 20px"><div class="eyebrow">ASHEN ONE’S FIELD NOTES</div><h1>Dark Souls III <BR>Collectible Achievement Tracker</h1><div class="muted">Sorceries · Pyromancies · Miracles · Gestures · Rings</div>
+<div class="stats"><div class="stat"><span>Collected overall</span><strong id="overall">0 / 229</strong></div><div class="stat"><span>Completion</span><strong id="pct">0%</strong></div><div class="stat"><span>Missing in category</span><strong id="missing">0</strong></div></div><div class="progress"><div class="bar" id="bar"></div></div></main></header>
+<main><div class="workspace">
+<aside class="sidebar" aria-label="Tracker sidebar">
+  <section class="side-panel category-panel"><h2 class="side-title">Categories</h2><nav class="tabs" id="tabs" aria-label="Achievement categories"></nav></section>
+  <section class="side-panel"><h2 class="side-title">Checklist tools</h2><div class="side-tools">
+    <button id="missingBtn">Show missing</button><button id="allBtn">Show all / clear filters</button>
+    <div class="tool-divider"></div>
+    <button id="exportBtn">Export backup</button><button id="importBtn">Import backup</button>
+    <div class="tool-divider"></div>
+    <button id="resetBtn">Reset current category</button><button id="resetAllBtn">Reset all progress</button>
+  </div><input id="file" type="file" accept=".json,application/json" hidden></section>
+</aside>
+<section class="main-content" aria-label="Achievement checklist">
+  <div class="controls"><input id="search" placeholder="Search name or acquisition details…"><select id="status"><option value="all">All statuses</option><option value="missing">Not acquired</option><option value="owned">Acquired</option></select><select id="sort"><option value="original">Original order</option><option value="az">Name A–Z</option><option value="za">Name Z–A</option></select></div>
+  <div class="muted" id="resultCount"></div><div class="list" id="list"></div>
+</section></div>
+<footer>Progress saves automatically in this browser. Export a JSON backup before clearing browser data or moving to another device. Acquisition details are taken from your uploaded Excel workbook.</footer></main>
+<script>
+const initial={"Sorceries": [{"name": "Soul Arrow", "how": "Sold by Orbeck", "acquired": false}, {"name": "Great Soul Arrow", "how": "Sold by Orbeck", "acquired": false}, {"name": "Heavy Soul Arrow", "how": "Sold by Orbeck", "acquired": false}, {"name": "Great Heavy Soul Arrow", "how": "Sold by Orbeck", "acquired": false}, {"name": "Farron Dart", "how": "Sold by Orbeck", "acquired": false}, {"name": "Great Farron Dart", "how": "Sold by Orbeck, Sage Scroll", "acquired": false}, {"name": "Farron Hail", "how": "Sold by Orbeck, Sage Scroll", "acquired": false}, {"name": "Homing Soulmass", "how": "Sold by Orbeck, Sage Scroll", "acquired": false}, {"name": "Homing Crystal Soulmass", "how": "Sold by Orbeck, Crystal Scroll", "acquired": false}, {"name": "Cyrstal Hail", "how": "Trade with Ludleth, Soul of Crystal Sage", "acquired": false}, {"name": "Soul Spear", "how": "Sold by Orbeck, Logan's Scroll", "acquired": false}, {"name": "Crystal Soul Spear", "how": "Sold by Orbeck, Crystal Scroll", "acquired": false}, {"name": "White Dragon Breath", "how": "Trade with Ludleth, Soul of Consumed Oceiros", "acquired": false}, {"name": "Soul Stream", "how": "Grand Archives, illusory wall, https://www.youtube.com/watch?v=kO0elYA1r28", "acquired": false}, {"name": "Soul Greatsword", "how": "Sold by Orbeck", "acquired": false}, {"name": "Farron Flashsword", "how": "Sold by Orbeck", "acquired": false}, {"name": "Magic Weapon", "how": "Sold by Orbeck", "acquired": false}, {"name": "Great Magic Weapon", "how": "Farron Keep, corpse just past crystal enemy near Perimeter bonfire, https://www.youtube.com/watch?v=Ulh98_NBLlQ skip to 1:50", "acquired": false}, {"name": "Crystal Magic Weapon", "how": "Sold by Orbeck, Crystal Scroll", "acquired": false}, {"name": "Magic Shield", "how": "Sold by Orbeck", "acquired": false}, {"name": "Great Magic Shield", "how": "Ithiryll Dungeon, head out to large area and drop down to lower level and kill enemy in cell,", "acquired": false}, {"name": "Spook", "how": "Sold by Orbeck", "acquired": false}, {"name": "Aural Decoy", "how": "Sold by Orbeck", "acquired": false}, {"name": "Pestilent Mercury", "how": "Sold by Orbeck, Sage Scroll", "acquired": false}, {"name": "Cast Light", "how": "Sold by Orbeck, Golden Scroll", "acquired": false}, {"name": "Repair", "how": "Sold by Orbeck, Golden Scroll", "acquired": false}, {"name": "Hidden Weapon", "how": "Sold by Orbeck, Golden Scroll", "acquired": false}, {"name": "Hidden Body", "how": "Sold by Orbeck, Golden Scroll", "acquired": false}, {"name": "Chameleon", "how": "Progress Anri's questline, Church of Yorshka bonfire - near her on a pilgrim disguised as a statue but will ruin usurpation ending, Illusory wall right before staircase to Anor Londo - Speak to anri and it will be available", "acquired": false}, {"name": "Twisted Wall of Light", "how": "Sold by Orbeck, Golden Scroll", "acquired": false}, {"name": "Deep Soul", "how": "Trade withLudleth, Soul of Deacons of the Deep", "acquired": false}, {"name": "Great Deep Soul", "how": "Rank 1 Aldritch Faithful Covenant, 10 Human Drags", "acquired": false}, {"name": "Affinity", "how": "Sold by Karla", "acquired": false}, {"name": "Dark Edge", "how": "Sold by Karla", "acquired": false}], "Pyromancies": [{"name": "Fireball", "how": "Sold by Cornyx", "acquired": false}, {"name": "Fire Orb", "how": "Sold by Cornyx, Great Swamp Tome", "acquired": false}, {"name": "Bursting Fireball", "how": "Sold by Cornyx, Great Swamp Tome", "acquired": false}, {"name": "Great Chaos Fireorb", "how": "Sold by Cornyx, Izalith Tome", "acquired": false}, {"name": "Chaos Bed Vestiges", "how": "Trade with Ludleth, Soul of the Old Demon King", "acquired": false}, {"name": "Fire Surge", "how": "Sold by Cornyx", "acquired": false}, {"name": "Fire Whip", "how": "Sold by Karla, Quelana Tome", "acquired": false}, {"name": "Firestorm", "how": "Sold by Karla, Quelana Tome", "acquired": false}, {"name": "Chaos Storm", "how": "Sold by Cornyx, Izalith Tome", "acquired": false}, {"name": "Great Combustion", "how": "Sold by Cornyx", "acquired": false}, {"name": "Sacred Flame", "how": "Catacombs of Carthus, Demon Ruins, Lava pool beyond where you fight Knight Slayer Tsorig https://www.youtube.com/watch?v=qFZ84a3hkQM", "acquired": false}, {"name": "Profaned Flame", "how": "Irithyll Dungeon, shortcut door to the right and ride the lift, spell is on a corpse next to the giant", "acquired": false}, {"name": "Poison Mist", "how": "Sold by Cornyx, Great Swamp Tome", "acquired": false}, {"name": "Toxic Mist", "how": "Catacombs of Carthus, Demon Ruins, lava pool https://www.youtube.com/watch?v=47pwLK3XT44", "acquired": false}, {"name": "Acid Surge", "how": "Sold by Cornyx, Carthus Tome", "acquired": false}, {"name": "Flash Sweat", "how": "Sold by Cornyx", "acquired": false}, {"name": "Profuse Sweat", "how": "Sold by Cornyx, Great Swamp Tome", "acquired": false}, {"name": "Iron Flesh", "how": "Farron Keep bonfire, go outside and head right, in the swamp among trees, https://www.youtube.com/watch?v=9SLAoFS5FLc", "acquired": false}, {"name": "Power Within", "how": "Grand Archives, first level behind a wall, accessed by pulling a level in a dark room just beyond the first wax pool, https://www.youtube.com/watch?v=YbvpiyPyeK0", "acquired": false}, {"name": "Carthus Beacon", "how": "Sold by Cornyx, Carthus Tome", "acquired": false}, {"name": "Carthus Flame Arc", "how": "Sold by Cornyx, Carthus Tome", "acquired": false}, {"name": "Warmth", "how": "Rank 2 Mound Makers", "acquired": false}, {"name": "Rapport", "how": "Sold by Karla, Quelana Tome", "acquired": false}, {"name": "Boulder Heave", "how": "Trade with Ludleth, Soul of a Stray Demon", "acquired": false}, {"name": "Black Flame", "how": "Sold by Karla, Grave Warden Tome", "acquired": false}, {"name": "Black Fire Orb", "how": "Sold by Karla, Grave Warden Tome", "acquired": false}, {"name": "Black Serpent", "how": "Trade with Ludleth, Soul of High Lord Wolnir", "acquired": false}], "Miracles": [{"name": "Heal Aid", "how": "Sold by Handmaid", "acquired": false}, {"name": "Heal", "how": "Sold by Irina", "acquired": false}, {"name": "Med Heal", "how": "Sold by Irina, Tome of Carim", "acquired": false}, {"name": "Great Heal", "how": "Distant Manor bonfire, backtrack into watery area and stick to the left, dead creature at the base of the bridge,", "acquired": false}, {"name": "Soothing Sunlight", "how": "Trade with Ludleth, Soul of the Dancer", "acquired": false}, {"name": "Replenishment", "how": "Sold by Irina", "acquired": false}, {"name": "Bountiful Light", "how": "Sold by Irina, Tome of Lothric", "acquired": false}, {"name": "Bountiful Sunlight", "how": "Trade with Ludleth, Soul of Rosaria", "acquired": false}, {"name": "Caressing Tears", "how": "Sold by Irina", "acquired": false}, {"name": "Tears of Denial", "how": "Sold by Irina, Tome of Carim", "acquired": false}, {"name": "Homeward", "how": "Sold by Irina", "acquired": false}, {"name": "Seek Guidance", "how": "Cathedral of the Deep, after running pass the giant, go down the hall and take the first left https://www.youtube.com/watch?v=sVA-Nn-pycM", "acquired": false}, {"name": "Sacred Oath", "how": "Rank 1 Warriors of Sunlight", "acquired": false}, {"name": "Force", "how": "Sold by Irina, Tome of Carim", "acquired": false}, {"name": "Emit Force", "how": "Distant Manor Bonfire, Siegward of Catarina in the Kitchen, must progress his questline", "acquired": false}, {"name": "Wrath of the Gods", "how": "Profaned Capital, toxic swamp area, climb ladder and get ontop of roof, drop down into building onto a platform, https://www.youtube.com/watch?v=uSDs9C5RJ4c", "acquired": false}, {"name": "Lightning Spear", "how": "Old Wolf of Farron bonfire, take lift up to area with stray demon and go right, drop down to a ledge, corpse is in this area,", "acquired": false}, {"name": "Great Lighting Spear", "how": "Rank 2 Warriors of Sunlight", "acquired": false}, {"name": "Sunlight Spear", "how": "Trade with Ludleth, Soul of the Lords", "acquired": false}, {"name": "Lightning Stake", "how": "Killing giant worm in Smouldering Lake", "acquired": false}, {"name": "Lightning Storm", "how": "Trade with Ludleth, Soul of the Unnamed King", "acquired": false}, {"name": "Divine Pillars of Light", "how": "Grand Archives bonfire, take the lift, stairs to the left, proceed until you reach a point where you can drop into the building", "acquired": false}, {"name": "Blessed weapon", "how": "Sold by Irina, Tome of Lothric", "acquired": false}, {"name": "Lightning Blade", "how": "Ithiryll Dungeon, go across to other side, drop down a level and got to lift shortcut, halfway down jump off", "acquired": false}, {"name": "Darkmoon Blade", "how": "Rank 2 Blade of the Darkmoon", "acquired": false}, {"name": "Magic Barrier", "how": "Sold by Irina, Tome of Lothric", "acquired": false}, {"name": "Great Magic Barrier", "how": "Archdragon Peak, Great Belfry bonfire, outside and to the right to find a ladder that leads up with a dead dragon, left side is a break in the railing, jump down to a leadge", "acquired": false}, {"name": "Dark Blade", "how": "Sold by Karla, Londor Tome", "acquired": false}, {"name": "Vow of Silence", "how": "Sold by Karla, Londor Tome", "acquired": false}, {"name": "Dead Again", "how": "Sold by Karla, Londor Tome", "acquired": false}, {"name": "Atonement", "how": "Farron Keep Perimeter bonfire, head away from Abyss Watchers and drop through a hole in the wall on left to a ledge", "acquired": false}, {"name": "Deep Protection", "how": "Sold by Karla, Deep Tome", "acquired": false}, {"name": "Gnaw", "how": "Sold by Karla, Deep Tome", "acquired": false}, {"name": "Dorthy's Gnawing", "how": "Centreal Irithyll bonfire, Proceed until you see a circular platform on the left with a crystal lizard, illusory railing that leads to a drop with an enemy and an item", "acquired": false}, {"name": "Lifehunt Scythe", "how": "Trade with Ludleth, Soul of Aldritch", "acquired": false}], "Gestures": [{"name": "Beckon", "how": "Yoel of Londor, find him at the Foot of the High Wall bonfire, then talk to him at firelink", "acquired": false}, {"name": "Call Over", "how": "trade with crows above Firelink Shrine", "acquired": false}, {"name": "Welcome", "how": "Cornyx, find him in Undead Settlement, talk to him at Firelink Shrine", "acquired": false}, {"name": "Applause", "how": "Leonhard's questline, complete", "acquired": false}, {"name": "Quiet Resolve", "how": "Anri of Atora at Church Yorska bonfire", "acquired": false}, {"name": "Rejoice", "how": "Siegward questline, give armor in well", "acquired": false}, {"name": "Hurrah!", "how": "Blacksmith Andre, talk to him", "acquired": false}, {"name": "Praise the sun", "how": "Sunlight Altar in Lothric Castle, backtrack from Dragonslayer Armor bonfire and clib the ladder on the right side of the building, follow this path", "acquired": false}, {"name": "My Thanks!", "how": "Red phantom invader near the bridge to High Lord Wolnir", "acquired": false}, {"name": "Proper Bow", "how": "Kill Yellowfinger Heysel, red phantom invader in farron keep, give pale tongue to rosaria, after extinguishing 3 flames her summon sign will be next to tower full of slugs", "acquired": false}, {"name": "Dignified Bow", "how": "Yuria of Londor, appears after you get 5 sigils from leveling up from Yoel", "acquired": false}, {"name": "Duel Bow", "how": "Summon Londor Pale Shade, must have 5 sigils, near Farron Keep Perimeter and outside Pontiff Sulyvahn", "acquired": false}, {"name": "Legion Etiquette", "how": "Interact with Old Wolf of Farron", "acquired": false}, {"name": "Darkmoon Loyalty", "how": "Talk to Sirris of the Sunless Realms two times at Firelink, First after talking to Anri and second after giving the Dreamchasers Ashes to Handmaid and tell her where you found it", "acquired": false}, {"name": "By My Sword", "how": "Summon Black Hand Gotthard, near Abyss Watchers and Pontiff Sulyvahn", "acquired": false}, {"name": "Prayer", "how": "Talk to Irina in Undead Settlement", "acquired": false}, {"name": "Silent Ally", "how": "Talk to Orbeck at Firelink, have to buy atleast 15 spells and return 2 sorcery scrolls", "acquired": false}, {"name": "Rest", "how": "Sit at a bonfire", "acquired": false}, {"name": "Patches Squat", "how": "Talk to Patches while hes sitting", "acquired": false}, {"name": "Prostration", "how": "Say no to Patches when he asks for forgiveness", "acquired": false}, {"name": "Toast", "how": "Siegward questline, help him fight fire demon in undead settlement", "acquired": false}, {"name": "Sleep", "how": "Siegward questline, talk to him after he gives you toast", "acquired": false}, {"name": "Curl Up", "how": "Talk to Greirat in Firelink after you give him Loretta's Bone", "acquired": false}, {"name": "Stretch Out", "how": "Corpse next Profaned Capital bonfire", "acquired": false}, {"name": "Path of the Dragon", "how": "Corpse after Oceiros boss room", "acquired": false}, {"name": "Collapse", "how": "Talk to Hawkwood at Firelink", "acquired": false}], "Rings": [{"name": "Ring of Life", "how": "Starting gift, sold by Handmaid - Dreamchaser's Ashes", "acquired": false}, {"name": "Ring of Life +1", "how": "Ledge next to Siegward in Undead Settlement", "acquired": false}, {"name": "Ring of Life +2", "how": "Dragon Barracks bonfire, cross bridge and enter room on the right, climb ladder go through left door, once outside head right and look for ring on ledge below", "acquired": false}, {"name": "Ring of Life +3", "how": "Behind large throne in Dark Firelink", "acquired": false}, {"name": "Sun Princess Ring", "how": "Found in Gwynevere's chamber above Aldrich bonfire", "acquired": false}, {"name": "Estus Ring", "how": "Firelink Shrine, 20k souls key from Handmaid, go to the top of the tower and before the elevator look to you right and jump down to coffins", "acquired": false}, {"name": "Ashen Estus Ring", "how": "Untended Graves bonfire, left path behind crow enemies", "acquired": false}, {"name": "Chloranthy Ring", "how": "Undead Settlement, after the Siegeward/Fire Demon, bottom of the tower, not the tower u come up from", "acquired": false}, {"name": "Chloranthy Ring +1", "how": "Pontiff Sulyvahn bonfire, leave from the entrance you first came in through and drop of the ledge, ring is behind structure", "acquired": false}, {"name": "Chloranthy Ring +2", "how": "Road of Sacrifices bonfire, ledge under a bridge", "acquired": false}, {"name": "Havel's Ring", "how": "Trade with Ludleth, Soul of a Stray Demon", "acquired": false}, {"name": "Havel's Ring +1", "how": "Great Belfry bonfire in Archdragon Peak, outside towards the altar, left side in a corner through the second stone arch", "acquired": false}, {"name": "Havel's Ring +2", "how": "Prison Tower bonfire, rafter as you work your way down", "acquired": false}, {"name": "Ring of Favor", "how": "Kill 2 huge dogs by Aldritch Faithful NPC", "acquired": false}, {"name": "Ring of Favor +1", "how": "Walkway above Pontiff Sulyvahn bonfire", "acquired": false}, {"name": "Ring of Favor +2", "how": "Cleansing Chapel bonfire, left door and up the lift, outside of tower and climb ladder, drop down to a slanted platform that leads up to a roof, turn left behind axe enemy", "acquired": false}, {"name": "Prisoner's Chain", "how": "Trade with Ludleth, Soul of Champion Gundyr", "acquired": false}, {"name": "Ring of Steel Protection", "how": "Ancient Wyvern area, right path to the end and go around railing", "acquired": false}, {"name": "Ring of Steel Protection +1", "how": "Dark Firelink Shrine behind tower on the far right", "acquired": false}, {"name": "Ring of Steel Protection +2", "how": "Visible on the platform in the catacombs off the left side of the first long bridge", "acquired": false}, {"name": "Magic Stoneplate Ring", "how": "Knights outside Oceiros' boss door", "acquired": false}, {"name": "Magic Stoneplate Ring +1", "how": "Farron Keep bonfire, right to area with curse frogs", "acquired": false}, {"name": "Magic Stoneplate Ring +2", "how": "Profaned Capitol, down interior ladder, through hole and turn right, down that path", "acquired": false}, {"name": "Flame Stoneplate Ring", "how": "Undead Settlement, tree next to Mound Makers cage guy", "acquired": false}, {"name": "Flame Stoneplate Ring +1", "how": "Profaned Capital bonfire, toxic water area on the roof", "acquired": false}, {"name": "Flame Stoneplate Ring +2", "how": "Catacombs of Carthus, black knight fighting another enemy behind illusory wall", "acquired": false}, {"name": "Thunder Stoneplate Ring", "how": "Dragon-kin Mausoleum bonfire, outside area with some scaffolding, climb lader", "acquired": false}, {"name": "Thunder Stoneplate Ring +1", "how": "Before Catacombs of Carthus bonfire, many breakable pots", "acquired": false}, {"name": "Thunder Stoneplate Ring +2", "how": "Dragonslayer Armor bonfire, backtrack to building on the left with the lift, opening on the left and drop down", "acquired": false}, {"name": "Dark Stoneplate Ring", "how": "Pontiff Sulyvahn bonfire, open area with giants", "acquired": false}, {"name": "Dark Stoneplate Ring +1", "how": "Dragonslayer Armor bonfire, backtrack and drop through a break in the railing on the right side to access a room", "acquired": false}, {"name": "Dark Stoneplate Ring +2", "how": "Keep Ruins bonfire, behind building beyond three enemies on the bridge", "acquired": false}, {"name": "Speckled Stoneplate Ring", "how": "Smouldering Lake, behind breakable wall, broken will ballista", "acquired": false}, {"name": "Speckled Stoneplate Ring +1", "how": "Crystal enemy in the tutorial", "acquired": false}, {"name": "Bloodbit Ring", "how": "Dilapidate Bridge bonfire, across the birdge, kill giant rat", "acquired": false}, {"name": "Bloodbit Ring +1", "how": "Smouldering Lake, giant ballista", "acquired": false}, {"name": "Poisonbite Ring", "how": "Cleansing Chapel bonfire, head outside turn right, drop down follow path until u reach crystal enemy, entrance to a grey stone area", "acquired": false}, {"name": "Poisonbite Ring +1", "how": "Undead Settlement, behind well in cemetery", "acquired": false}, {"name": "Cursebite Ring", "how": "Profaned Capital bonfire, toxic swamp in a cave", "acquired": false}, {"name": "Fleshbite Ring", "how": "Grand Archives, past shortcut laddder by four mages, one level up in an area with a bunch of books and cursed hands", "acquired": false}, {"name": "Fleshbite Ring +1", "how": "Tower on the Wall bonfire, roof with the tranforming monsters, go to ladder where u will see ring on next roof over", "acquired": false}, {"name": "Knight's Ring", "how": "Lothric Castle, before Sunlight Altar", "acquired": false}, {"name": "Huter's Ring", "how": "Grand Archives, roof past 3 flying knights", "acquired": false}, {"name": "Scholar's Ring", "how": "Grand Archives, center bridge, pull the lever to reveal item next to u", "acquired": false}, {"name": "Priestess Ring", "how": "Sold by Handmaid in Dark Firelink", "acquired": false}, {"name": "Covetous Gold Serpent Ring", "how": "Ithiryll Dungeons, cell with Siegeward", "acquired": false}, {"name": "Covetous Gold Serpent Ring +1", "how": "Church of Yorshka bonfire, graveyard and head left into dark room, after exiting drop off the right side to a ledge", "acquired": false}, {"name": "Covetous Gold Serpent Ring +2", "how": "area after Nameless King", "acquired": false}, {"name": "Covetous Silver Sperpent Ring", "how": "Illusory wall under crows nest", "acquired": false}, {"name": "Covetous Silver Serpent Ring +1", "how": "Ithiryll Dungeons, shortcut next to bonfire, jump off early", "acquired": false}, {"name": "Covetous Silver Serpent Ring +2", "how": "Undead Settlement, Siegeward/Fire Demon, ledge under Flynn's Ring", "acquired": false}, {"name": "Saint's Ring", "how": "Sold by Irina", "acquired": false}, {"name": "Deep Ring", "how": "Cleansing Chapel bonfire, lift the leads to the tower, kill enemy", "acquired": false}, {"name": "Darkmoon Ring", "how": "Rank 1 Blade of the Darkmoon covenant, farm silver knights", "acquired": false}, {"name": "Young Dragon Ring", "how": "Orbeck, return two scrolls and buy five or so spells", "acquired": false}, {"name": "Bellowing Dragoncrest", "how": "Irithyll Dungeon, proceed forward and go right down the hallway, open the locked door at the end of the hallway", "acquired": false}, {"name": "Great Swamp Ring", "how": "Crucifixion Woods, large crab", "acquired": false}, {"name": "Witch's Ring", "how": "On an altar right before Abondoned Tomb bonfire", "acquired": false}, {"name": "Morne's Ring", "how": "Crucifixion Woods, Halfway Keep bonfire, backtrack to a bridge and drop down to the ledge", "acquired": false}, {"name": "Ring of the Sun's Firstborn", "how": "Backtrack from the Pontiff Sulvahn bonfire and fall off the ledge to a platform below", "acquired": false}, {"name": "Lingering Dragoncrest Ring", "how": "Farron Keep, kill giant crabs", "acquired": false}, {"name": "Lingering Dragoncrest Ring +1", "how": "Crucifixion Woods, water area near giant crabs", "acquired": false}, {"name": "Lingering Dragoncrest Ring +2", "how": "Grand Archives, roof near 3 flying knights", "acquired": false}, {"name": "Sage Ring", "how": "Crucifixion Woods bonfire, drop into water and follow the wall until you see an opening", "acquired": false}, {"name": "Sage Ring +1", "how": "Grand Archives, past flying knights, drop down into building", "acquired": false}, {"name": "Sage Ring +2", "how": "Dancer of the Boreal Valley bonfire, climb ladder and head left, take the lift down and jump off half way, left and fall onto platform, jump to an adjacent platform", "acquired": false}, {"name": "Dusk Crown Ring", "how": "Corpse in a cell in the lowest level of Irithyll Dungeon", "acquired": false}, {"name": "Leo Ring", "how": "Distant Manor bonfire, go past the kitchen and on the second level in a chest", "acquired": false}, {"name": "Wolf Ring", "how": "Rank 2 Watchdogs of Farron", "acquired": false}, {"name": "Wolf Ring +1", "how": "Keep Ruins bonfire, exit and circle building", "acquired": false}, {"name": "Wolf Ring +2", "how": "Left immediately outside first boss door", "acquired": false}, {"name": "Hawk Ring", "how": "Undead Settlement, dropped by giant at top tower", "acquired": false}, {"name": "Hornet Ring", "how": "Path to the right of the Dark Firelink Shrine", "acquired": false}, {"name": "Knight Slayer's Ring", "how": "Red phantom invader near bridge in Catacombs of Carthus", "acquired": false}, {"name": "Ring of the Evil Eye", "how": "Progess Anri's questline to Church of Yorshka bonfire", "acquired": false}, {"name": "Ring of the Evil Eye +1", "how": "Behind large structure before Deacons of the Deep", "acquired": false}, {"name": "Ring of the Evil Eye +2", "how": "High Wall of Lothric, behind barrels where greirat's cell key", "acquired": false}, {"name": "Farron Ring", "how": "Hawkwoon in Firelink after several visits", "acquired": false}, {"name": "Dragonscale Ring", "how": "Lift down to toxic swamp before Oseiros but jump off early", "acquired": false}, {"name": "Horsehoof Ring", "how": "Sold by Patches", "acquired": false}, {"name": "Wood Grain Ring", "how": "Sold by Handmaid, Eastern Ashes", "acquired": false}, {"name": "Wood Grain Ring +1", "how": "Dancer of the Boreal Valley bofire, climb the ladder and head left, down lift, behind lift", "acquired": false}, {"name": "Wood Grain Ring +2", "how": "Ithiryll of the Boreal Valley, exiting building with a silver knight shooting you, stairs to the left but turn right and lookaround the corner", "acquired": false}, {"name": "Flynn's Ring", "how": "Siegward/Fire Demon, highest roof", "acquired": false}, {"name": "Magic Clutch Ring", "how": "Church of Yorshka bonfire, illusory wall under Pontiff Sulyvahn", "acquired": false}, {"name": "Lightning Clutch Ring", "how": "Left of the Ancient Wyvern area", "acquired": false}, {"name": "Fire Clutch Ring", "how": "Undead Settlement, Cliff Underside bonfire, wooden sturcture", "acquired": false}, {"name": "Dark Clutch Ring", "how": "Mimic chest at the end of a sewer hallway that connects to the large lower level of Ithiryll Dungeon", "acquired": false}, {"name": "Red Tearstone Ring", "how": "Dragonslayer Armor bonfire, backtrack and go into building on the left, hole on the left wall", "acquired": false}, {"name": "Blue Tearstone Ring", "how": "Greirat in High Wall", "acquired": false}, {"name": "Lloyd's Sword Ring", "how": "Cathedral of the Deep, ledge by the giant", "acquired": false}, {"name": "Lloyd's Shield Ring", "how": "Sold by Handmaid, Paladin Ashes", "acquired": false}, {"name": "Carthus Milkring", "how": "Breakable pots right before Catacombs of Carthus bonfire", "acquired": false}, {"name": "Carthus Bloodring", "how": "Catacombs of Carthus bonfire, left and then two rights, follow paths that lead to skeleton wheels, end of the hallway", "acquired": false}, {"name": "Pontiff's Right Eye", "how": "Obtained by killing large cat enemy upon entering Itithyll of the Boreal Valley", "acquired": false}, {"name": "Pontiff's Left Eye", "how": "Trade with Ludleth, Soul of Boreal Valley Vordt", "acquired": false}, {"name": "Aldrich's Ruby", "how": "Large spider in large room in Anor Londo", "acquired": false}, {"name": "Aldrich's Sapphire", "how": "Large spider near huge room with twogiants in the Cathedral of the Deep", "acquired": false}, {"name": "Silvercat Ring", "how": "Sirris in Firelink, use summon sign on the Boreal Valley birdge and defeat enemy", "acquired": false}, {"name": "Slumbering Dragoncrest Ring", "how": "Orbeck, after buying 15 spells and returning 2 scrolls", "acquired": false}, {"name": "Untrue Dark Ring", "how": "Sold by Yuriel", "acquired": false}, {"name": "Untrue White Ring", "how": "Sold by Yuriel", "acquired": false}, {"name": "Obscuring Ring", "how": "Rank 1 Rosaria's Fingers", "acquired": false}, {"name": "Reversal Ring", "how": "Darkmoon Tomb before Anor Londo", "acquired": false}, {"name": "Skull Ring", "how": "Ludleths corpse after getting all lords and placing them", "acquired": false}, {"name": "Calamity Ring", "how": "Path of the Dragon gesture by the altar next to Dragon-Kin Mausoleum", "acquired": false}, {"name": "Ring of Sacrifice", "how": "Sold by Yuria", "acquired": false}]};
+const categories=Object.keys(initial);
+const STORAGE="ds3-achievement-tracker-v1";
+let data=JSON.parse(JSON.stringify(initial));
+let current=categories[0];
+try{const saved=JSON.parse(localStorage.getItem(STORAGE)||"null");if(saved&&saved.data){for(const c of categories)if(saved.data[c])data[c].forEach((x,i)=>{if(typeof saved.data[c][i]==="boolean")x.acquired=saved.data[c][i]})}}catch(e){}
+const $=id=>document.getElementById(id);
+function save(){try{localStorage.setItem(STORAGE,JSON.stringify({data:Object.fromEntries(categories.map(c=>[c,data[c].map(x=>x.acquired)]))}))}catch(e){alert("Browser storage unavailable. Export a backup to keep your progress.")}}
+function totals(){let all=categories.flatMap(c=>data[c]),got=all.filter(x=>x.acquired).length;let list=data[current],catgot=list.filter(x=>x.acquired).length;$("overall").textContent=`${got} / ${all.length}`;$("pct").textContent=Math.round(got/all.length*100)+"%";$("bar").style.width=(got/all.length*100)+"%";$("missing").textContent=list.length-catgot}
+function tabs(){const el=$("tabs");el.replaceChildren();categories.forEach(c=>{const b=document.createElement("button");b.className=c===current?"active":"";b.setAttribute("aria-current",c===current?"page":"false");const label=document.createElement("span");label.textContent=c;const count=document.createElement("span");count.className="tab-count";count.textContent=`${data[c].filter(x=>x.acquired).length}/${data[c].length}`;b.append(label,count);b.onclick=()=>{current=c;tabs();render()};el.append(b)})}
+function render(){totals();const q=$("search").value.toLowerCase().trim(),st=$("status").value,sort=$("sort").value;let items=data[current].map((x,i)=>({...x,index:i})).filter(x=>(!q||(x.name+" "+x.how).toLowerCase().includes(q))&&(st==="all"||(st==="owned"&&x.acquired)||(st==="missing"&&!x.acquired)));if(sort==="az")items.sort((a,b)=>a.name.localeCompare(b.name));if(sort==="za")items.sort((a,b)=>b.name.localeCompare(a.name));$("resultCount").textContent=`${current}: showing ${items.length} of ${data[current].length}`;const el=$("list");el.replaceChildren();if(!items.length){el.innerHTML='<div class="empty">Nothing matches these filters.</div>';return}items.forEach(x=>{const card=document.createElement("div");card.className="entry"+(x.acquired?" owned":"");const label=document.createElement("label"),cb=document.createElement("input");cb.type="checkbox";cb.checked=x.acquired;cb.addEventListener("change",()=>{data[current][x.index].acquired=cb.checked;save();tabs();render()});const info=document.createElement("div"),name=document.createElement("div"),how=document.createElement("div");name.className="name";name.textContent=x.name;how.className="how";how.textContent=x.how||"No acquisition details listed.";info.append(name,how);label.append(cb,info);const badge=document.createElement("span");badge.className="badge";badge.textContent=x.acquired?"ACQUIRED":"MISSING";card.append(label,badge);el.append(card)})}
+["search","status","sort"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",render));
+$("missingBtn").onclick=()=>{$("status").value="missing";render()};$("allBtn").onclick=()=>{$("status").value="all";$("search").value="";$("sort").value="original";render()};
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({app:"DS3 Achievement Tracker",version:1,data},null,2)],{type:"application/json"});const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="ds3-achievement-tracker-backup.json";a.click();URL.revokeObjectURL(url)};
+$("importBtn").onclick=()=>$("file").click();$("file").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(!obj.data)throw Error("Invalid tracker backup");for(const c of categories)if(obj.data[c])data[c].forEach((x,i)=>{if(typeof obj.data[c][i]==="boolean")x.acquired=obj.data[c][i];else if(obj.data[c][i]&&typeof obj.data[c][i].acquired==="boolean")x.acquired=obj.data[c][i].acquired});save();tabs();render();alert("Backup imported.")}catch(err){alert("Import failed: "+err.message)}e.target.value=""};
+$("resetBtn").onclick=()=>{if(confirm(`Reset all ${current} to not acquired?`)){data[current].forEach(x=>x.acquired=false);save();tabs();render()}};
+$("resetAllBtn").onclick=()=>{if(confirm("Reset ALL 229 collectibles across every category? This cannot be undone unless you have a backup.")){categories.forEach(c=>data[c].forEach(x=>x.acquired=false));save();tabs();render()}};
+tabs();render();
+</script></body></html>
